@@ -111,9 +111,19 @@ class SqlTargetHandler:
             value = value[1:-1]
         return value
 
+    @staticmethod
+    def _is_identity_compatible(column: Any) -> bool:
+        """IDENTITY solo es valido en tipos numericos enteros o decimal/numeric con scale 0."""
+        data_type = column.data_type.lower()
+        if data_type in {"int", "bigint", "smallint", "tinyint"}:
+            return True
+        if data_type in {"decimal", "numeric"}:
+            return column.scale is None or int(column.scale) == 0
+        return False
+
     def _column_definition(self, column: Any) -> str:
         parts = [f"{self._quote_identifier(column.name)} {self._sql_type_for(column)}"]
-        if column.is_identity:
+        if column.is_identity and self._is_identity_compatible(column):
             parts.append("IDENTITY(1,1)")
         if not column.nullable:
             parts.append("NOT NULL")

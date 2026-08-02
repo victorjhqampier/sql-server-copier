@@ -120,8 +120,8 @@ class SqlOriginHandler:
                 precision=row[3],
                 scale=row[4],
                 nullable=str(row[5]).strip().upper() == "YES",
-                is_identity=bool(row[6]),
-                default=row[7],
+                default=row[6],
+                is_identity=bool(row[7]),
             )
             for row in rows
         ]

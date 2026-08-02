@@ -45,7 +45,6 @@ class SQLMigrateExecutor:
                     self._migrate_table(table_cfg)
                 except Exception:
                     self._logger.error(f"Error copiando datos para {table_cfg}", exc_info=True)
-            self._create_foreign_keys()
         finally:
             self._connector.close_all()
 
@@ -83,6 +82,7 @@ class SQLMigrateExecutor:
             self._target.set_identity_insert(target_schema, table, True)
 
         inserted = 0
+        skipped = 0
         try:
             for batch_index, batch in enumerate(
                 self._source.read_batches(
@@ -95,10 +95,14 @@ class SQLMigrateExecutor:
                 ),
                 start=1,
             ):
-                self._target.insert_rows(target_schema, table, columns, batch)
-                inserted += len(batch)
+                batch_inserted, batch_skipped = self._target.insert_rows_tolerant(
+                    target_schema, table, columns, batch
+                )
+                inserted += batch_inserted
+                skipped += batch_skipped
                 self._logger.info(
-                    f"  {target_schema}.{table} lote {batch_index}: {len(batch)} registros insertados (acumulado {inserted})"
+                    f"  {target_schema}.{table} lote {batch_index}: {batch_inserted} insertados, "
+                    f"{batch_skipped} omitidos (acumulado: {inserted} insertados, {skipped} omitidos)"
                 )
         except Exception:
             self._logger.error(f"Error migrando {schema}.{table}", exc_info=True)
@@ -107,46 +111,7 @@ class SQLMigrateExecutor:
             if preserve_identity:
                 self._target.set_identity_insert(target_schema, table, False)
 
-        self._validate_counts(target_schema, table, source_count, inserted, copy_rows)
-
-    def _target_schema_for(self, source_schema: str, source_table: str) -> str:
-        for table_cfg in self._tables:
-            cfg_schema, cfg_table = parse_table_name(table_cfg["table"])
-            if cfg_schema == source_schema and cfg_table == source_table:
-                return table_cfg.get("target_schema", cfg_schema)
-        return source_schema
-
-    def _create_foreign_keys(self) -> None:
-        self._logger.info("Intentando crear foreign keys posteriores a la copia de datos")
-        for table_cfg in self._tables:
-            schema, table = parse_table_name(table_cfg["table"])
-            target_schema = table_cfg.get("target_schema", schema)
-            if not self._target.table_exists(target_schema, table):
-                continue
-            for foreign_key in self._source.get_foreign_keys(schema, table):
-                referenced_schema = self._target_schema_for(foreign_key.referenced_schema, foreign_key.referenced_table)
-                referenced_table = foreign_key.referenced_table
-
-                # Saltar si la tabla referenciada no existe en destino (no está en config)
-                if not self._target.table_exists(referenced_schema, referenced_table):
-                    self._logger.info(
-                        f"FK {target_schema}.{table}.{foreign_key.name} omitida: "
-                        f"tabla referenciada {referenced_schema}.{referenced_table} no existe en destino"
-                    )
-                    continue
-
-                # Saltar si la FK ya existe (re-ejecución o colisión de nombres)
-                if self._target.foreign_key_exists(target_schema, table, foreign_key.name):
-                    self._logger.info(f"FK {target_schema}.{table}.{foreign_key.name} ya existe, omitida")
-                    continue
-
-                self._target.try_create_foreign_key(
-                    target_schema,
-                    table,
-                    foreign_key,
-                    referenced_schema,
-                    referenced_table,
-                )
+        self._validate_counts(target_schema, table, source_count, inserted, skipped, copy_rows)
 
     def _validate_counts(
         self,
@@ -154,12 +119,26 @@ class SQLMigrateExecutor:
         table: str,
         source_count: int,
         inserted: int,
+        skipped: int,
         copy_rows: int | None,
     ) -> None:
         target_count = self._target.count(schema, table)
         expected = source_count if copy_rows is None else min(source_count, copy_rows)
-        if target_count != expected or inserted != expected:
+        processed = inserted + skipped
+
+        if processed != expected:
             raise RuntimeError(
-                f"Conteos no coinciden para {schema}.{table}: esperado={expected}, insertados={inserted}, destino={target_count}"
+                f"Conteos no coinciden para {schema}.{table}: esperado={expected}, procesados={processed}"
             )
-        self._logger.info(f"Copia de {schema}.{table} completada: {expected} registros, conteos validados")
+        if target_count != inserted:
+            raise RuntimeError(
+                f"Conteo destino no coincide para {schema}.{table}: insertados={inserted}, destino={target_count}"
+            )
+
+        if skipped > 0:
+            self._logger.warning(
+                f"Copia de {schema}.{table} completada con omisiones: "
+                f"esperados={expected}, insertados={inserted}, omitidos_fk={skipped}"
+            )
+        else:
+            self._logger.info(f"Copia de {schema}.{table} completada: {inserted} registros, conteos validados")

@@ -105,8 +105,8 @@ class SqlTargetHandler:
         return data_type
 
     @staticmethod
-    def _normalize_default(default: str) -> str:
-        value = default.strip()
+    def _normalize_default(default: str | int | float) -> str:
+        value = str(default).strip()
         if value.startswith("(") and value.endswith(")"):
             value = value[1:-1]
         return value

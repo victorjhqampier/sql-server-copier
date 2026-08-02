@@ -59,17 +59,26 @@ class SqlServerConnector:
         self._logger = logger or LoggerLibrary.set_logger().getChild(self.__class__.__name__)
         self._connections: dict[str, pymssql.Connection] = {}
 
+    def _is_connection_alive(self, connection: pymssql.Connection) -> bool:
+        """Verifica si la conexion sigue activa usando SELECT 1 (mas confiable que ping)."""
+        try:
+            cursor = connection.cursor()
+            cursor.execute("SELECT 1")
+            cursor.fetchone()
+            cursor.close()
+            return True
+        except Exception:
+            return False
+
     def get_connection(self, connection_string: ConnectionString) -> pymssql.Connection:
         key = connection_string.connection_key
         connection = self._connections.get(key)
 
         if connection is not None:
-            try:
-                connection.ping()
+            if self._is_connection_alive(connection):
                 return connection
-            except Exception:
-                self._logger.warning(f"Conexion caida, reconectando: {key}")
-                self._disconnect(key)
+            self._logger.warning(f"Conexion caida, reconectando: {key}")
+            self._disconnect(key)
 
         connection = pymssql.connect(**connection_string.as_pymssql_kwargs())
         self._connections[key] = connection
@@ -83,11 +92,7 @@ class SqlServerConnector:
         connection = self._connections.get(connection_string.connection_key)
         if connection is None:
             return False
-        try:
-            connection.ping()
-            return True
-        except Exception:
-            return False
+        return self._is_connection_alive(connection)
 
     def close(self, connection_string: ConnectionString) -> None:
         self._disconnect(connection_string.connection_key)

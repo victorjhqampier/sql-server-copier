@@ -37,11 +37,15 @@ class SQLTableExecutor:
     def run(self) -> None:
         self._logger.info(f"Iniciando copia de estructura para {len(self._tables)} tabla(s)")
         try:
+            # Pasada 1: crear tablas, PKs, índices, comentarios
             for table_cfg in self._tables:
                 try:
                     self._create_table(table_cfg)
                 except Exception:
                     self._logger.error(f"Error copiando estructura para {table_cfg}", exc_info=True)
+
+            # Pasada 2: crear FKs (requiere que todas las tablas existan)
+            self._create_foreign_keys()
         finally:
             self._connector.close_all()
 
@@ -76,3 +80,45 @@ class SQLTableExecutor:
 
         for property_metadata in self._source.get_extended_properties(schema, table):
             self._target.try_add_extended_property(target_schema, table, property_metadata)
+
+    def _target_schema_for(self, source_schema: str, source_table: str) -> str:
+        """Resuelve el schema destino para una tabla origen."""
+        for table_cfg in self._tables:
+            cfg_schema, cfg_table = parse_table_name(table_cfg["table"])
+            if cfg_schema == source_schema and cfg_table == source_table:
+                return table_cfg.get("target_schema", cfg_schema)
+        return source_schema
+
+    def _create_foreign_keys(self) -> None:
+        """Crea FKs para todas las tablas (segunda pasada)."""
+        self._logger.info("Creando foreign keys (segunda pasada)")
+        for table_cfg in self._tables:
+            schema, table = parse_table_name(table_cfg["table"])
+            target_schema = table_cfg.get("target_schema", schema)
+
+            if not self._target.table_exists(target_schema, table):
+                continue
+
+            for foreign_key in self._source.get_foreign_keys(schema, table):
+                referenced_schema = self._target_schema_for(foreign_key.referenced_schema, foreign_key.referenced_table)
+                referenced_table = foreign_key.referenced_table
+
+                # Saltar si la tabla referenciada no existe en destino
+                if not self._target.table_exists(referenced_schema, referenced_table):
+                    self._logger.warning(
+                        f"FK {foreign_key.name} omitida: tabla {referenced_schema}.{referenced_table} no existe en destino"
+                    )
+                    continue
+
+                # Saltar si la FK ya existe
+                if self._target.foreign_key_exists(target_schema, table, foreign_key.name):
+                    self._logger.info(f"FK {foreign_key.name} ya existe en {target_schema}.{table}, omitida")
+                    continue
+
+                self._target.try_create_foreign_key(
+                    target_schema,
+                    table,
+                    foreign_key,
+                    referenced_schema,
+                    referenced_table,
+                )

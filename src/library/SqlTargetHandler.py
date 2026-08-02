@@ -287,6 +287,59 @@ class SqlTargetHandler:
         finally:
             cursor.close()
 
+    def insert_rows_tolerant(
+        self,
+        schema: str,
+        table: str,
+        columns: list[str],
+        rows: list[tuple],
+    ) -> tuple[int, int]:
+        """Inserta filas tolerando errores de FK/integridad.
+
+        Intenta insertar el lote completo. Si falla, hace rollback e
+        intenta fila por fila, omitiendo las que fallen.
+
+        Returns:
+            (insertados, omitidos)
+        """
+        if not rows:
+            return 0, 0
+
+        columns_sql = ", ".join(self._quote_identifier(column) for column in columns)
+        placeholders = ", ".join(["%s"] * len(columns))
+        sql = f"INSERT INTO {self._table_identifier(schema, table)} ({columns_sql}) VALUES ({placeholders})"
+
+        connection = self._get_connection()
+        cursor = connection.cursor()
+
+        # Intento 1: lote completo
+        try:
+            cursor.executemany(sql, rows)
+            connection.commit()
+            return len(rows), 0
+        except Exception:
+            connection.rollback()
+        finally:
+            cursor.close()
+
+        # Intento 2: fila por fila
+        inserted = 0
+        skipped = 0
+        for row in rows:
+            cursor = connection.cursor()
+            try:
+                cursor.execute(sql, row)
+                connection.commit()
+                inserted += 1
+            except Exception as exc:
+                connection.rollback()
+                skipped += 1
+                self._logger.warning(f"Fila omitida en {schema}.{table} (FK/integridad): {exc}")
+            finally:
+                cursor.close()
+
+        return inserted, skipped
+
     def set_identity_insert(self, schema: str, table: str, enabled: bool) -> None:
         state = "ON" if enabled else "OFF"
         self.execute(f"SET IDENTITY_INSERT {self._table_identifier(schema, table)} {state}")

@@ -121,15 +121,22 @@ class SqlTargetHandler:
             return column.scale is None or int(column.scale) == 0
         return False
 
-    def _column_definition(self, column: Any) -> str:
+    def _column_definition(self, column: Any, *, is_identity: bool = False) -> str:
         parts = [f"{self._quote_identifier(column.name)} {self._sql_type_for(column)}"]
-        if column.is_identity and self._is_identity_compatible(column):
+        if is_identity:
             parts.append("IDENTITY(1,1)")
         if not column.nullable:
             parts.append("NOT NULL")
         if column.default:
             parts.append(f"DEFAULT {self._normalize_default(column.default)}")
         return " ".join(parts)
+
+    def _find_identity_column(self, columns: list[Any]) -> str | None:
+        """Encuentra la primera columna IDENTITY valida. Solo puede haber una por tabla."""
+        for column in columns:
+            if column.is_identity and self._is_identity_compatible(column):
+                return column.name
+        return None
 
     def build_create_table(
         self,
@@ -142,7 +149,11 @@ class SqlTargetHandler:
         if not columns:
             raise ValueError(f"No hay columnas para construir CREATE TABLE de {schema}.{table}")
 
-        column_defs = ",\n    ".join(self._column_definition(column) for column in columns)
+        identity_column = self._find_identity_column(columns)
+        column_defs = ",\n    ".join(
+            self._column_definition(column, is_identity=(column.name == identity_column))
+            for column in columns
+        )
         primary_key_clause = ""
         if primary_key:
             pk_columns = ", ".join(self._quote_identifier(column) for column in primary_key)

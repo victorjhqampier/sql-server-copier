@@ -70,6 +70,17 @@ class SqlTargetHandler:
         )
         return row is not None
 
+    def foreign_key_exists(self, schema: str, table: str, fk_name: str) -> bool:
+        """Verifica si una foreign key ya existe en la tabla destino."""
+        row = self._query_one(
+            "SELECT 1 FROM sys.foreign_keys fk "
+            "INNER JOIN sys.tables t ON fk.parent_object_id = t.object_id "
+            "INNER JOIN sys.schemas s ON t.schema_id = s.schema_id "
+            "WHERE s.name = %s AND t.name = %s AND fk.name = %s",
+            (schema, table, fk_name),
+        )
+        return row is not None
+
     def ensure_schema(self, schema: str) -> None:
         if self.schema_exists(schema):
             return
@@ -232,7 +243,7 @@ class SqlTargetHandler:
             self.create_index(schema, table, index)
             self._logger.info(f"Indice creado: {schema}.{table}.{index.name}")
         except Exception as exc:
-            self._logger.warning(f"No se pudo crear indice {schema}.{table}.{index.name}: {exc}", exc_info=True)
+            self._logger.warning(f"No se pudo crear indice {schema}.{table}.{index.name}: {exc}")
 
     def try_create_foreign_key(
         self,
@@ -246,7 +257,7 @@ class SqlTargetHandler:
             self.create_foreign_key(schema, table, foreign_key, referenced_schema, referenced_table)
             self._logger.info(f"Foreign key creada: {schema}.{table}.{foreign_key.name}")
         except Exception as exc:
-            self._logger.warning(f"No se pudo crear FK {schema}.{table}.{foreign_key.name}: {exc}", exc_info=True)
+            self._logger.warning(f"No se pudo crear FK {schema}.{table}.{foreign_key.name}: {exc}")
 
     def try_add_extended_property(self, schema: str, table: str, property_metadata: Any) -> None:
         try:
@@ -254,10 +265,7 @@ class SqlTargetHandler:
             target = property_metadata.column_name or table
             self._logger.info(f"Comentario copiado: {schema}.{table}.{target}.{property_metadata.name}")
         except Exception as exc:
-            self._logger.warning(
-                f"No se pudo copiar comentario {schema}.{table}.{property_metadata.name}: {exc}",
-                exc_info=True,
-            )
+            self._logger.warning(f"No se pudo copiar comentario {schema}.{table}.{property_metadata.name}: {exc}")
 
     def insert_rows(self, schema: str, table: str, columns: list[str], rows: list[tuple]) -> int:
         if not rows:

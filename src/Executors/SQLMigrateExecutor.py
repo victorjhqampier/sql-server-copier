@@ -125,12 +125,27 @@ class SQLMigrateExecutor:
                 continue
             for foreign_key in self._source.get_foreign_keys(schema, table):
                 referenced_schema = self._target_schema_for(foreign_key.referenced_schema, foreign_key.referenced_table)
+                referenced_table = foreign_key.referenced_table
+
+                # Saltar si la tabla referenciada no existe en destino (no está en config)
+                if not self._target.table_exists(referenced_schema, referenced_table):
+                    self._logger.info(
+                        f"FK {target_schema}.{table}.{foreign_key.name} omitida: "
+                        f"tabla referenciada {referenced_schema}.{referenced_table} no existe en destino"
+                    )
+                    continue
+
+                # Saltar si la FK ya existe (re-ejecución o colisión de nombres)
+                if self._target.foreign_key_exists(target_schema, table, foreign_key.name):
+                    self._logger.info(f"FK {target_schema}.{table}.{foreign_key.name} ya existe, omitida")
+                    continue
+
                 self._target.try_create_foreign_key(
                     target_schema,
                     table,
                     foreign_key,
                     referenced_schema,
-                    foreign_key.referenced_table,
+                    referenced_table,
                 )
 
     def _validate_counts(

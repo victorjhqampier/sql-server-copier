@@ -5,6 +5,7 @@ description = "Migrador SQL Server -> SQL Server en Python puro con uv. Fase DDL
 readme = "README.md"
 requires-python = ">=3.13,<3.14"
 dependencies = [
+    "cassandra-driver>=3.29.0",
     "pymssql>=2.3.0",
 ]
 

@@ -194,6 +194,19 @@ Con tamano de lote personalizado:
 uv run python -m src.Executors migrate --batch-size 1000
 ```
 
+### Generar estructura ScyllaDB y modelos C# (DDL)
+
+Lee la metadata SQL Server, crea las tablas configuradas en ScyllaDB y genera los modelos C# en
+`src/Executors/outputCsNet`:
+
+```bash
+uv run python -m src.Executors.SqlToScylladbDdlExecutor
+```
+
+Esta fase lee metadata desde `TARGET_SQLSERVER_*` y crea estructura en `SCYLLADB_*`.
+Configura `SCYLLADB_CONTACT_POINTS` y `SCYLLADB_KEYSPACE` en `.env`. El keyspace debe existir;
+esta fase no copia datos ni crea keyspaces.
+
 ### Ejemplo completo de principio a fin
 
 ```bash

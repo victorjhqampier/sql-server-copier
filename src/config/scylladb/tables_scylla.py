@@ -2,6 +2,8 @@
 # La metadata se infiere del origen; esta fase no copia datos.
 # Por defecto se usa la PK SQL Server como partition_key y el nombre destino es snake_case.
 # Cada entrada puede incluir keyspace, target_table, partition_key y clustering_key.
+# Los tipos SQL Server geography y geometry se modelan temporalmente como text en ScyllaDB.
+# El mapping Zinc usa topics arify.<schema>.<tabla SQL Server> para cada tabla procesada.
 
 tables_scylladb = [
     # Nivel 1 - Tablas independientes
@@ -54,13 +56,11 @@ tables_scylladb = [
     {"table": "dbo.SI_FINBloqueoCuenta"},
     {"table": "dbo.SI_FinParametroProd"},
     {"table": "dbo.SI_FinCreditos"},
-
     # Nivel 2
     {"table": "dbo.SI_FinCliente"},
     {"table": "dbo.SI_FinTipoTasa"},
     {"table": "dbo.SI_FinProducto"},
     {"table": "dbo.Si_FinTipoTransferenciaLimites"},
-
     # Nivel 3
     {"table": "dbo.SI_FinClienteJuridico"},
     {"table": "dbo.SI_FinClienteNatural"},
@@ -68,7 +68,6 @@ tables_scylladb = [
     {"table": "dbo.SI_FinDeposito"},
     {"table": "dbo.SI_FinKardex"},
     {"table": "dbo.Si_FinLimiteTransferencia"},
-
     # Nivel 4
     {"table": "dbo.SI_FinDepositoCTS"},
     {"table": "dbo.SI_FinDetalleKardex"},

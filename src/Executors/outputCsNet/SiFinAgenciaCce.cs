@@ -6,75 +6,75 @@ namespace ScylladbInfrastructure.Collections.Tables;
 internal sealed class SiFinAgenciaCce
 {
     [PartitionKey(0)]
-    [Column("idAgenciaCCE")]
-    public int IdAgenciaCce { get; init; }
+[Column("idAgenciaCCE")]
+public int IdAgenciaCce { get; init; }
 
     [Column("cCodigoRegistro")]
-    public string? CodigoRegistro { get; init; }
+public string? CCodigoRegistro { get; init; }
 
     [Column("cNumeroEntidad")]
-    public string? NumeroEntidad { get; init; }
+public string? CNumeroEntidad { get; init; }
 
     [Column("cNumeroOficina")]
-    public string? NumeroOficina { get; init; }
+public string? CNumeroOficina { get; init; }
 
     [Column("cNumeroOficinaPlaza")]
-    public string? NumeroOficinaPlaza { get; init; }
+public string? CNumeroOficinaPlaza { get; init; }
 
     [Column("cUbigeoPlazaCAnexo")]
-    public string? UbigeoPlazaCAnexo { get; init; }
+public string? CUbigeoPlazaCAnexo { get; init; }
 
     [Column("cUbigeoPlazaCTransf")]
-    public string? UbigeoPlazaCTransf { get; init; }
+public string? CUbigeoPlazaCTransf { get; init; }
 
     [Column("cNombreOficina")]
-    public string? NombreOficina { get; init; }
+public string? CNombreOficina { get; init; }
 
     [Column("cNombreDomicilioOfi")]
-    public string? NombreDomicilioOfi { get; init; }
+public string? CNombreDomicilioOfi { get; init; }
 
     [Column("cNombreLocalidad")]
-    public string? NombreLocalidad { get; init; }
+public string? CNombreLocalidad { get; init; }
 
     [Column("cCodigoPostDistrito")]
-    public string? CodigoPostDistrito { get; init; }
+public string? CCodigoPostDistrito { get; init; }
 
     [Column("cNombrePlaza")]
-    public string? NombrePlaza { get; init; }
+public string? CNombrePlaza { get; init; }
 
     [Column("cTipoOficina")]
-    public string? TipoOficina { get; init; }
+public string? CTipoOficina { get; init; }
 
     [Column("cUbigeoINEI")]
-    public string? UbigeoInei { get; init; }
+public string? CUbigeoInei { get; init; }
 
     [Column("cPlazaExclusiva")]
-    public string? PlazaExclusiva { get; init; }
+public string? CPlazaExclusiva { get; init; }
 
     [Column("cPrefTelef")]
-    public string? PrefTelef { get; init; }
+public string? CPrefTelef { get; init; }
 
     [Column("cNumTelef1")]
-    public string? NumTelef1 { get; init; }
+public string? CNumTelef1 { get; init; }
 
     [Column("cNumTelef2")]
-    public string? NumTelef2 { get; init; }
+public string? CNumTelef2 { get; init; }
 
     [Column("cNumTelefFax")]
-    public string? NumTelefFax { get; init; }
+public string? CNumTelefFax { get; init; }
 
     [Column("cNumTelefCentral")]
-    public string? NumTelefCentral { get; init; }
+public string? CNumTelefCentral { get; init; }
 
     [Column("cNumExtension")]
-    public string? NumExtension { get; init; }
+public string? CNumExtension { get; init; }
 
     [Column("cMotivoActualizacion")]
-    public string? MotivoActualizacion { get; init; }
+public string? CMotivoActualizacion { get; init; }
 
     [Column("cFechaActualizacion")]
-    public string? FechaActualizacion { get; init; }
+public string? CFechaActualizacion { get; init; }
 
     [Column("lVigente")]
-    public bool Vigente { get; init; }
+public bool? LVigente { get; init; }
 }

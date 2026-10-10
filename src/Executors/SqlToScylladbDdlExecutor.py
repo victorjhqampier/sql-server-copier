@@ -6,6 +6,8 @@ from typing import Any, Sequence
 
 from src.config.scylladb.tables_scylla import tables_scylladb
 from src.library.CreateCsFileHandler import CreateCsFileHandler
+from src.library.CreateDebeziumMapHandler import CreateDebeziumMapHandler
+from src.library.CreateZincMapHandler import CreateZincMapHandler
 from src.library.EnvironmentLibrary import EnvironmentLibrary, EnvironmentVariables
 from src.library.LoggerLibrary import LoggerLibrary
 from src.library.ScylladbConnector import ScylladbConnectionString, ScylladbConnector
@@ -21,6 +23,7 @@ _TARGET_SQLSERVER_KEYS = (
 )
 _SCYLLADB_REQUIRED_KEYS = ("SCYLLADB_CONTACT_POINTS", "SCYLLADB_KEYSPACE")
 _SCYLLADB_OPTIONAL_KEYS = ("SCYLLADB_PORT", "SCYLLADB_USERNAME", "SCYLLADB_PASSWORD")
+_CDC_TOPIC_PREFIX = "arify"
 
 
 class SqlToScylladbDdlExecutor:
@@ -37,6 +40,8 @@ class SqlToScylladbDdlExecutor:
         "datetimeoffset": "timestamp",
         "decimal": "decimal",
         "float": "double",
+        "geography": "text",
+        "geometry": "text",
         "image": "blob",
         "int": "int",
         "money": "decimal",
@@ -46,6 +51,7 @@ class SqlToScylladbDdlExecutor:
         "nvarchar": "text",
         "real": "float",
         "smallint": "smallint",
+        "smalldatetime": "timestamp",
         "smallmoney": "decimal",
         "text": "text",
         "time": "time",
@@ -63,6 +69,10 @@ class SqlToScylladbDdlExecutor:
         scylladb: ScylladbConnectionString,
         tables: list[dict[str, Any]],
         output_dir: Path | str = Path(__file__).resolve().parent / "outputCsNet",
+        zinc_output_dir: Path | str = Path(__file__).resolve().parent / "outputApacheZinc",
+        debezium_config_path: Path | str = Path(__file__).resolve().parent
+        / "outputDebezium"
+        / "debezium-sqlserver.json",
         namespace: str = "ScylladbInfrastructure.Collections.Tables",
     ) -> None:
         if not tables:
@@ -70,18 +80,39 @@ class SqlToScylladbDdlExecutor:
         if not scylladb.keyspace:
             raise ValueError("SCYLLADB_KEYSPACE es requerido para crear tablas")
 
+        # -- Conserva la configuracion de las tablas que se procesaran en orden.
         self._tables = tables
         self._scylladb = scylladb
         self._logger = LoggerLibrary.set_logger().getChild(self.__class__.__name__)
+
+        # -- Abre y reutiliza conexiones hacia el SQL Server que aporta la metadata.
         self._sql_connector = SqlServerConnector(logger=self._logger)
+
+        # -- Abre y reutiliza sesiones hacia ScyllaDB para ejecutar el DDL.
         self._scylladb_connector = ScylladbConnector(logger=self._logger)
+
+        # -- Lee columnas y claves desde SQL Server, sin modificar el origen.
         self._source = SqlOriginHandler(sqlserver, connector=self._sql_connector, logger=self._logger)
+
+        # -- Materializa tablas ScyllaDB usando la metadata ya traducida.
         self._target = ScylladbTargetDdlHandler(scylladb, connector=self._scylladb_connector, logger=self._logger)
+
+        # -- Genera el modelo C# que representa cada tabla ScyllaDB.
         self._cs_files = CreateCsFileHandler(output_dir, namespace)
+
+        # -- Genera el archivo Kafka Connect/Zinc que mapea topics hacia ScyllaDB.
+        self._zinc_maps = CreateZincMapHandler(zinc_output_dir)
+
+        # -- Sincroniza Debezium con la misma lista de tablas usadas por este flujo.
+        self._debezium_map = CreateDebeziumMapHandler(debezium_config_path)
 
     def run(self) -> None:
         self._logger.info(f"Iniciando generacion ScyllaDB para {len(self._tables)} tabla(s)")
         try:
+            # -- Actualiza solo table.include.list antes de crear DDL/C#/Zinc.
+            debezium_path = self._debezium_map.update_table_include_list(self._tables)
+            self._logger.info(f"Config Debezium actualizada: {debezium_path}")
+
             for table_cfg in self._tables:
                 try:
                     self._create_table(table_cfg)
@@ -131,6 +162,7 @@ class SqlToScylladbDdlExecutor:
         return tuple(column.strip() for column in values)
 
     def _create_table(self, table_cfg: dict[str, Any]) -> None:
+        # -- Resuelve la tabla SQL Server y el nombre destino ScyllaDB.
         source_schema, source_table = parse_table_name(table_cfg["table"])
         keyspace = table_cfg.get("keyspace", self._scylladb.keyspace)
         target_table = table_cfg.get("target_table", self._snake_case(source_table))
@@ -139,24 +171,44 @@ class SqlToScylladbDdlExecutor:
         if not isinstance(target_table, str) or not target_table.strip():
             raise ValueError(f"target_table invalida para {source_schema}.{source_table}")
 
+        # -- Lee columnas, tipos y nulabilidad desde SQL Server.
         columns = self._source.get_table_metadata(source_schema, source_table)
         if not columns:
             raise ValueError(f"No se encontro metadata en el origen para {source_schema}.{source_table}")
 
+        # -- Usa la PK SQL Server como partition key si la configuracion no define otra.
         source_primary_key = self._source.get_primary_key(source_schema, source_table)
         partition_key = self._key_columns(table_cfg, "partition_key", source_primary_key)
         if not partition_key:
             raise ValueError(
-                f"{source_schema}.{source_table} no tiene PK SQL Server; configura partition_key explicitamente"
+                f"{source_schema}.{source_table} no tiene PK SQL Server; agrega "
+                f"{{'table': '{source_schema}.{source_table}', 'partition_key': ['columna']}} "
+                "en src/config/scylladb/tables_scylla.py"
             )
         clustering_key = self._key_columns(table_cfg, "clustering_key")
+        # -- Traduce tipos SQL Server a una definicion compartida por los tres destinos.
         definitions = self._translate_columns(columns)
 
+        # -- Crea la tabla fisica en ScyllaDB.
         self._target.create_table(keyspace.strip(), target_table.strip(), definitions, partition_key, clustering_key)
+
+        # -- Genera la clase C# para acceder a la tabla desde .NET.
         output_path = self._cs_files.create_table(
             keyspace.strip(), target_table.strip(), definitions, partition_key, clustering_key
         )
         self._logger.info(f"Modelo C# generado: {output_path}")
+
+        # -- Usa el mismo patron de topic que Debezium genera: arify.schema.TablaSQLServer.
+        cdc_topic = f"{_CDC_TOPIC_PREFIX}.{source_schema}.{source_table}"
+        zinc_output_path = self._zinc_maps.create_table(
+            keyspace.strip(),
+            target_table.strip(),
+            definitions,
+            partition_key,
+            clustering_key,
+            topic=cdc_topic,
+        )
+        self._logger.info(f"Mapping Zinc generado: {zinc_output_path}")
 
 
 def _target_sqlserver_connection_string(env: EnvironmentVariables) -> ConnectionString:

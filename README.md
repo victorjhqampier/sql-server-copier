@@ -209,7 +209,8 @@ esta fase no copia datos ni crea keyspaces.
 Los mappings Zinc se generan para todas las tablas procesadas usando topics Debezium
 `arify.<schema>.<tabla SQL Server>`.
 Tambien se actualiza `src/Executors/outputDebezium/debezium-sqlserver.json`, solo en
-`table.include.list`, usando la misma lista de tablas.
+`table.include.list`, y se genera `src/Executors/outputDebezium/enable-cdc.sql`
+con el script CDC minimo para SQL Server, usando la misma lista de tablas.
 
 ### Ejemplo completo de principio a fin
 

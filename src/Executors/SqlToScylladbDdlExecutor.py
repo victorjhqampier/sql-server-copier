@@ -73,6 +73,7 @@ class SqlToScylladbDdlExecutor:
         debezium_config_path: Path | str = Path(__file__).resolve().parent
         / "outputDebezium"
         / "debezium-sqlserver.json",
+        cdc_sql_path: Path | str = Path(__file__).resolve().parent / "outputDebezium" / "enable-cdc.sql",
         namespace: str = "ScylladbInfrastructure.Collections.Tables",
     ) -> None:
         if not tables:
@@ -104,14 +105,16 @@ class SqlToScylladbDdlExecutor:
         self._zinc_maps = CreateZincMapHandler(zinc_output_dir)
 
         # -- Sincroniza Debezium con la misma lista de tablas usadas por este flujo.
-        self._debezium_map = CreateDebeziumMapHandler(debezium_config_path)
+        self._debezium_map = CreateDebeziumMapHandler(debezium_config_path, cdc_sql_path)
 
     def run(self) -> None:
         self._logger.info(f"Iniciando generacion ScyllaDB para {len(self._tables)} tabla(s)")
         try:
-            # -- Actualiza solo table.include.list antes de crear DDL/C#/Zinc.
-            debezium_path = self._debezium_map.update_table_include_list(self._tables)
+            # -- Sincroniza Debezium (JSON + SQL CDC) antes de crear DDL/C#/Zinc.
+            debezium_path, cdc_sql_path = self._debezium_map.sync(self._tables)
             self._logger.info(f"Config Debezium actualizada: {debezium_path}")
+            if cdc_sql_path:
+                self._logger.info(f"Script CDC generado: {cdc_sql_path}")
 
             for table_cfg in self._tables:
                 try:

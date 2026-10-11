@@ -5,7 +5,7 @@ __pycache__/
 .venv/
 build/
 dist/
-**/*.cs
+#**/*.cs
 # Entorno
 .env
 .env.local

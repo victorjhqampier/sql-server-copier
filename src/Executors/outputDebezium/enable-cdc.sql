@@ -188,10 +188,10 @@ IF NOT EXISTS (SELECT 1 FROM cdc.change_tables WHERE source_object_id = OBJECT_I
     EXEC sys.sp_cdc_enable_table @source_schema = N'dbo', @source_name = N'SI_FinDepositoCTS', @role_name = NULL, @supports_net_changes = 0;
 GO
 
-IF NOT EXISTS (SELECT 1 FROM cdc.change_tables WHERE source_object_id = OBJECT_ID(N'dbo.SI_FinDetalleKardex'))
-    EXEC sys.sp_cdc_enable_table @source_schema = N'dbo', @source_name = N'SI_FinDetalleKardex', @role_name = NULL, @supports_net_changes = 0;
-GO
-
 IF NOT EXISTS (SELECT 1 FROM cdc.change_tables WHERE source_object_id = OBJECT_ID(N'dbo.Si_FinLimiteTransferenciaConcepto'))
     EXEC sys.sp_cdc_enable_table @source_schema = N'dbo', @source_name = N'Si_FinLimiteTransferenciaConcepto', @role_name = NULL, @supports_net_changes = 0;
+GO
+
+IF NOT EXISTS (SELECT 1 FROM cdc.change_tables WHERE source_object_id = OBJECT_ID(N'dbo.SI_FinOutboxTransaccion'))
+    EXEC sys.sp_cdc_enable_table @source_schema = N'dbo', @source_name = N'SI_FinOutboxTransaccion', @role_name = NULL, @supports_net_changes = 0;
 GO

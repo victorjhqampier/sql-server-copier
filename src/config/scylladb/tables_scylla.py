@@ -55,6 +55,6 @@ tables_scylladb = [
     {"table": "dbo.Si_FinLimiteTransferencia"},
     # Nivel 4
     {"table": "dbo.SI_FinDepositoCTS"},
-    {"table": "dbo.SI_FinDetalleKardex"},
     {"table": "dbo.Si_FinLimiteTransferenciaConcepto"},
+    {"table": "dbo.SI_FinOutboxTransaccion"},
 ]

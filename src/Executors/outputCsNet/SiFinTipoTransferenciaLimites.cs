@@ -7,11 +7,11 @@ internal sealed class SiFinTipoTransferenciaLimites
 {
     [PartitionKey(0)]
 [Column("idTipoTransferencia")]
-public int IdTipoTransferencia { get; init; }
+public int idTipoTransferencia { get; init; }
 
     [Column("cTipoTransferencia")]
-public string CTipoTransferencia { get; init; }
+public string cTipoTransferencia { get; init; }
 
     [Column("idClasificacionTransferencia")]
-public int IdClasificacionTransferencia { get; init; }
+public int idClasificacionTransferencia { get; init; }
 }

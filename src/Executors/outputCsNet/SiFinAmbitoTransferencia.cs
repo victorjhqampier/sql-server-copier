@@ -7,14 +7,14 @@ internal sealed class SiFinAmbitoTransferencia
 {
     [PartitionKey(0)]
 [Column("idAmbitoTransferencia")]
-public int IdAmbitoTransferencia { get; init; }
+public int idAmbitoTransferencia { get; init; }
 
     [Column("cAmbitoTransferencia")]
-public string? CAmbitoTransferencia { get; init; }
+public string? cAmbitoTransferencia { get; init; }
 
     [Column("cNombreCorto")]
-public string? CNombreCorto { get; init; }
+public string? cNombreCorto { get; init; }
 
     [Column("lVigente")]
-public bool? LVigente { get; init; }
+public bool? lVigente { get; init; }
 }

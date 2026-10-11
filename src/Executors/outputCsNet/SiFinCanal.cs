@@ -7,14 +7,14 @@ internal sealed class SiFinCanal
 {
     [PartitionKey(0)]
 [Column("idCanal")]
-public int IdCanal { get; init; }
+public int idCanal { get; init; }
 
     [Column("cCanal")]
-public string? CCanal { get; init; }
+public string? cCanal { get; init; }
 
     [Column("lVigente")]
-public bool? LVigente { get; init; }
+public bool? lVigente { get; init; }
 
     [Column("cCodSBS")]
-public string? CCodSbs { get; init; }
+public string? cCodSBS { get; init; }
 }

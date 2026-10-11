@@ -7,74 +7,74 @@ internal sealed class SiFinAgenciaCce
 {
     [PartitionKey(0)]
 [Column("idAgenciaCCE")]
-public int IdAgenciaCce { get; init; }
+public int idAgenciaCCE { get; init; }
 
     [Column("cCodigoRegistro")]
-public string? CCodigoRegistro { get; init; }
+public string? cCodigoRegistro { get; init; }
 
     [Column("cNumeroEntidad")]
-public string? CNumeroEntidad { get; init; }
+public string? cNumeroEntidad { get; init; }
 
     [Column("cNumeroOficina")]
-public string? CNumeroOficina { get; init; }
+public string? cNumeroOficina { get; init; }
 
     [Column("cNumeroOficinaPlaza")]
-public string? CNumeroOficinaPlaza { get; init; }
+public string? cNumeroOficinaPlaza { get; init; }
 
     [Column("cUbigeoPlazaCAnexo")]
-public string? CUbigeoPlazaCAnexo { get; init; }
+public string? cUbigeoPlazaCAnexo { get; init; }
 
     [Column("cUbigeoPlazaCTransf")]
-public string? CUbigeoPlazaCTransf { get; init; }
+public string? cUbigeoPlazaCTransf { get; init; }
 
     [Column("cNombreOficina")]
-public string? CNombreOficina { get; init; }
+public string? cNombreOficina { get; init; }
 
     [Column("cNombreDomicilioOfi")]
-public string? CNombreDomicilioOfi { get; init; }
+public string? cNombreDomicilioOfi { get; init; }
 
     [Column("cNombreLocalidad")]
-public string? CNombreLocalidad { get; init; }
+public string? cNombreLocalidad { get; init; }
 
     [Column("cCodigoPostDistrito")]
-public string? CCodigoPostDistrito { get; init; }
+public string? cCodigoPostDistrito { get; init; }
 
     [Column("cNombrePlaza")]
-public string? CNombrePlaza { get; init; }
+public string? cNombrePlaza { get; init; }
 
     [Column("cTipoOficina")]
-public string? CTipoOficina { get; init; }
+public string? cTipoOficina { get; init; }
 
     [Column("cUbigeoINEI")]
-public string? CUbigeoInei { get; init; }
+public string? cUbigeoINEI { get; init; }
 
     [Column("cPlazaExclusiva")]
-public string? CPlazaExclusiva { get; init; }
+public string? cPlazaExclusiva { get; init; }
 
     [Column("cPrefTelef")]
-public string? CPrefTelef { get; init; }
+public string? cPrefTelef { get; init; }
 
     [Column("cNumTelef1")]
-public string? CNumTelef1 { get; init; }
+public string? cNumTelef1 { get; init; }
 
     [Column("cNumTelef2")]
-public string? CNumTelef2 { get; init; }
+public string? cNumTelef2 { get; init; }
 
     [Column("cNumTelefFax")]
-public string? CNumTelefFax { get; init; }
+public string? cNumTelefFax { get; init; }
 
     [Column("cNumTelefCentral")]
-public string? CNumTelefCentral { get; init; }
+public string? cNumTelefCentral { get; init; }
 
     [Column("cNumExtension")]
-public string? CNumExtension { get; init; }
+public string? cNumExtension { get; init; }
 
     [Column("cMotivoActualizacion")]
-public string? CMotivoActualizacion { get; init; }
+public string? cMotivoActualizacion { get; init; }
 
     [Column("cFechaActualizacion")]
-public string? CFechaActualizacion { get; init; }
+public string? cFechaActualizacion { get; init; }
 
     [Column("lVigente")]
-public bool? LVigente { get; init; }
+public bool? lVigente { get; init; }
 }

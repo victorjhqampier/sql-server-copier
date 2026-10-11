@@ -7,56 +7,56 @@ internal sealed class SiFinDetalleTransfKardex
 {
     [PartitionKey(0)]
 [Column("idDetalleTransfKardex")]
-public int IdDetalleTransfKardex { get; init; }
+public int idDetalleTransfKardex { get; init; }
 
     [Column("idKardex")]
-public int? IdKardex { get; init; }
+public int? idKardex { get; init; }
 
     [Column("nMontoOperacion")]
-public decimal? NMontoOperacion { get; init; }
+public decimal? nMontoOperacion { get; init; }
 
     [Column("idTipoOperacion")]
-public int? IdTipoOperacion { get; init; }
+public int? idTipoOperacion { get; init; }
 
     [Column("idEntidadOperacion")]
-public int? IdEntidadOperacion { get; init; }
+public int? idEntidadOperacion { get; init; }
 
     [Column("nComision")]
-public decimal? NComision { get; init; }
+public decimal? nComision { get; init; }
 
     [Column("idCargoComision")]
-public int? IdCargoComision { get; init; }
+public int? idCargoComision { get; init; }
 
     [Column("idAmbitoTransferencia")]
-public int? IdAmbitoTransferencia { get; init; }
+public int? idAmbitoTransferencia { get; init; }
 
     [Column("idConceptoComision")]
-public int? IdConceptoComision { get; init; }
+public int? idConceptoComision { get; init; }
 
     [Column("idModalidadConsultaCCI")]
-public int? IdModalidadConsultaCci { get; init; }
+public int? idModalidadConsultaCCI { get; init; }
 
     [Column("cNumeroCCI")]
-public string? CNumeroCci { get; init; }
+public string? cNumeroCCI { get; init; }
 
     [Column("cCodigoOperacion")]
-public string? CCodigoOperacion { get; init; }
+public string? cCodigoOperacion { get; init; }
 
     [Column("cCodigoOperacionOrden")]
-public string? CCodigoOperacionOrden { get; init; }
+public string? cCodigoOperacionOrden { get; init; }
 
     [Column("cCodigoInstruccion")]
-public string? CCodigoInstruccion { get; init; }
+public string? cCodigoInstruccion { get; init; }
 
     [Column("cNumeroCelDestino")]
-public string? CNumeroCelDestino { get; init; }
+public string? cNumeroCelDestino { get; init; }
 
     [Column("dFechaHoraOpe")]
-public System.DateTime? DFechaHoraOpe { get; init; }
+public System.DateTime? dFechaHoraOpe { get; init; }
 
     [Column("dFechaHoraCCEOrden")]
-public System.DateTime? DFechaHoraCceOrden { get; init; }
+public System.DateTime? dFechaHoraCCEOrden { get; init; }
 
     [Column("lVigente")]
-public bool? LVigente { get; init; }
+public bool? lVigente { get; init; }
 }

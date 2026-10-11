@@ -7,15 +7,15 @@ internal sealed class SiFinRemuClienteCts
 {
     [PartitionKey(0)]
 [Column("idCuenta")]
-public int IdCuenta { get; init; }
+public int idCuenta { get; init; }
 
     [PartitionKey(1)]
 [Column("idPeriodo")]
-public int IdPeriodo { get; init; }
+public int idPeriodo { get; init; }
 
     [Column("idMoneda")]
-public int IdMoneda { get; init; }
+public int idMoneda { get; init; }
 
     [Column("nRemuTotal")]
-public decimal NRemuTotal { get; init; }
+public decimal nRemuTotal { get; init; }
 }

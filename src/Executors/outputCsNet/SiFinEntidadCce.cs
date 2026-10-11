@@ -7,23 +7,23 @@ internal sealed class SiFinEntidadCce
 {
     [PartitionKey(0)]
 [Column("idEntidadCCE")]
-public int IdEntidadCce { get; init; }
+public int idEntidadCCE { get; init; }
 
     [Column("cNombre")]
-public string? CNombre { get; init; }
+public string? cNombre { get; init; }
 
     [Column("cNombreCorto")]
-public string? CNombreCorto { get; init; }
+public string? cNombreCorto { get; init; }
 
     [Column("cAbreviatura")]
-public string? CAbreviatura { get; init; }
+public string? cAbreviatura { get; init; }
 
     [Column("cCodigoCCE")]
-public string? CCodigoCce { get; init; }
+public string? cCodigoCCE { get; init; }
 
     [Column("lDirectorio")]
-public bool? LDirectorio { get; init; }
+public bool? lDirectorio { get; init; }
 
     [Column("lVigente")]
-public bool? LVigente { get; init; }
+public bool? lVigente { get; init; }
 }

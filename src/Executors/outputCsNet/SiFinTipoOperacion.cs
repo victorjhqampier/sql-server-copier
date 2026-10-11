@@ -7,47 +7,47 @@ internal sealed class SiFinTipoOperacion
 {
     [PartitionKey(0)]
 [Column("idTipoOperacion")]
-public int IdTipoOperacion { get; init; }
+public int idTipoOperacion { get; init; }
 
     [Column("cTipoOperacion")]
-public string? CTipoOperacion { get; init; }
+public string? cTipoOperacion { get; init; }
 
     [Column("lVigente")]
-public bool? LVigente { get; init; }
+public bool? lVigente { get; init; }
 
     [Column("idModulo")]
-public int? IdModulo { get; init; }
+public int? idModulo { get; init; }
 
     [Column("lIndClaModalidad")]
-public bool? LIndClaModalidad { get; init; }
+public bool? lIndClaModalidad { get; init; }
 
     [Column("lIndClaMoneda")]
-public bool? LIndClaMoneda { get; init; }
+public bool? lIndClaMoneda { get; init; }
 
     [Column("lIndClaProducto")]
-public bool? LIndClaProducto { get; init; }
+public bool? lIndClaProducto { get; init; }
 
     [Column("lIndExtractoCta")]
-public bool? LIndExtractoCta { get; init; }
+public bool? lIndExtractoCta { get; init; }
 
     [Column("cCodSBS")]
-public string? CCodSbs { get; init; }
+public string? cCodSBS { get; init; }
 
     [Column("idTipoAsiento")]
-public int? IdTipoAsiento { get; init; }
+public int? idTipoAsiento { get; init; }
 
     [Column("nNumIpresionVou")]
-public int? NNumIpresionVou { get; init; }
+public int? nNumIpresionVou { get; init; }
 
     [Column("lRegOpeSplaft")]
-public bool? LRegOpeSplaft { get; init; }
+public bool? lRegOpeSplaft { get; init; }
 
     [Column("cDesOpeSplaft")]
-public string? CDesOpeSplaft { get; init; }
+public string? cDesOpeSplaft { get; init; }
 
     [Column("lImprimir")]
-public bool? LImprimir { get; init; }
+public bool? lImprimir { get; init; }
 
     [Column("nNumDiasVcto")]
-public int NNumDiasVcto { get; init; }
+public int nNumDiasVcto { get; init; }
 }

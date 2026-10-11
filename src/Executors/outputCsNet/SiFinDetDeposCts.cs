@@ -7,20 +7,20 @@ internal sealed class SiFinDetDeposCts
 {
     [PartitionKey(0)]
 [Column("idKardex")]
-public int IdKardex { get; init; }
+public int idKardex { get; init; }
 
     [Column("idCuenta")]
-public int IdCuenta { get; init; }
+public int idCuenta { get; init; }
 
     [Column("nMontoIntangible")]
-public decimal NMontoIntangible { get; init; }
+public decimal nMontoIntangible { get; init; }
 
     [Column("nMontoDisp")]
-public decimal NMontoDisp { get; init; }
+public decimal nMontoDisp { get; init; }
 
     [Column("idTipoOperacion")]
-public int IdTipoOperacion { get; init; }
+public int idTipoOperacion { get; init; }
 
     [Column("lVigente")]
-public bool LVigente { get; init; }
+public bool lVigente { get; init; }
 }

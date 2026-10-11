@@ -7,17 +7,17 @@ internal sealed class SiFinCaracteristicaBloq
 {
     [PartitionKey(0)]
 [Column("idCaracteristicaBloq")]
-public int IdCaracteristicaBloq { get; init; }
+public int idCaracteristicaBloq { get; init; }
 
     [Column("cDescripcion")]
-public string CDescripcion { get; init; }
+public string cDescripcion { get; init; }
 
     [Column("lIsReqMonto")]
-public bool LIsReqMonto { get; init; }
+public bool lIsReqMonto { get; init; }
 
     [Column("lEstado")]
-public bool LEstado { get; init; }
+public bool lEstado { get; init; }
 
     [Column("idTipoOperacion")]
-public int? IdTipoOperacion { get; init; }
+public int? idTipoOperacion { get; init; }
 }

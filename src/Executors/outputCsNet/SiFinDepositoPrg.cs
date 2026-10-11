@@ -7,56 +7,56 @@ internal sealed class SiFinDepositoPrg
 {
     [PartitionKey(0)]
 [Column("idCuenta")]
-public int IdCuenta { get; init; }
+public int idCuenta { get; init; }
 
     [Column("nNroDepos")]
-public int NNroDepos { get; init; }
+public int nNroDepos { get; init; }
 
     [Column("nNumDepPag")]
-public int NNumDepPag { get; init; }
+public int nNumDepPag { get; init; }
 
     [Column("nDiasAtrazo")]
-public int NDiasAtrazo { get; init; }
+public int nDiasAtrazo { get; init; }
 
     [Column("nMontoCuota")]
-public decimal? NMontoCuota { get; init; }
+public decimal? nMontoCuota { get; init; }
 
     [Column("nMonAdelantado")]
-public decimal? NMonAdelantado { get; init; }
+public decimal? nMonAdelantado { get; init; }
 
     [Column("nMonTotProg")]
-public decimal? NMonTotProg { get; init; }
+public decimal? nMonTotProg { get; init; }
 
     [Column("idPlanPagos")]
-public int? IdPlanPagos { get; init; }
+public int? idPlanPagos { get; init; }
 
     [Column("dFechaCulminacion")]
-public Cassandra.LocalDate? DFechaCulminacion { get; init; }
+public Cassandra.LocalDate? dFechaCulminacion { get; init; }
 
     [Column("lVigente")]
-public bool? LVigente { get; init; }
+public bool? lVigente { get; init; }
 
     [Column("idMotivo")]
-public int? IdMotivo { get; init; }
+public int? idMotivo { get; init; }
 
     [Column("lDebito")]
-public bool LDebito { get; init; }
+public bool lDebito { get; init; }
 
     [Column("nMesGracia")]
-public int NMesGracia { get; init; }
+public int nMesGracia { get; init; }
 
     [Column("lBeneficio")]
-public bool LBeneficio { get; init; }
+public bool lBeneficio { get; init; }
 
     [Column("lCmpContrato")]
-public bool LCmpContrato { get; init; }
+public bool lCmpContrato { get; init; }
 
     [Column("idCtaDebitoPrg")]
-public int IdCtaDebitoPrg { get; init; }
+public int idCtaDebitoPrg { get; init; }
 
     [Column("idBonificacion")]
-public int IdBonificacion { get; init; }
+public int idBonificacion { get; init; }
 
     [Column("idEstadoCta")]
-public int IdEstadoCta { get; init; }
+public int idEstadoCta { get; init; }
 }

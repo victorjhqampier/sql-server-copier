@@ -32,10 +32,10 @@ internal sealed class Agencias
 {
     [PartitionKey(0)]
     [Column("id_agencia")]
-    public int IdAgencia { get; init; }
+    public int id_agencia { get; init; }
 
     [Column("codigo")]
-    public string? Codigo { get; init; }
+    public string? codigo { get; init; }
 }
 ```
 
@@ -69,3 +69,7 @@ content = handler.build_create_table(
 
 El executor debe traducir la metadata de SQL Server una sola vez y enviar la misma definicion
 a este handler y a `ScylladbTargetDdlHandler`.
+
+Los identificadores con acentos se normalizan a ASCII antes de generar las salidas. Por ejemplo,
+la columna SQL Server `cDirección` se crea como `cDireccion` en ScyllaDB y se representa como
+`cDireccion` en C#.

@@ -35,6 +35,11 @@ Genera `scylladb-sink.json` con:
 Las columnas de `partition_key` y `clustering_key` se mapean desde `key`; las demas desde
 `value`. Esto asume que Debezium aplico `ExtractNewRecordState` y expone los campos directamente.
 
+Cuando el nombre fuente tiene acentos, el nombre de la columna ScyllaDB se normaliza a ASCII y
+el mapping conserva el nombre original del evento Debezium. Por ejemplo,
+`cDireccion=value.cDirección` escribe el campo fuente `cDirección` en la columna ScyllaDB
+`cDireccion`.
+
 ## Prefijo de topic
 
 ```python

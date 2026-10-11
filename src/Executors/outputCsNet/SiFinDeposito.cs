@@ -7,203 +7,203 @@ internal sealed class SiFinDeposito
 {
     [PartitionKey(0)]
 [Column("idCuenta")]
-public int IdCuenta { get; init; }
+public int idCuenta { get; init; }
 
     [Column("idEstado")]
-public int? IdEstado { get; init; }
+public int? idEstado { get; init; }
 
     [Column("idProducto")]
-public int? IdProducto { get; init; }
+public int? idProducto { get; init; }
 
     [Column("idTipoCuenta")]
-public int? IdTipoCuenta { get; init; }
+public int? idTipoCuenta { get; init; }
 
     [Column("idTipoTasa")]
-public int? IdTipoTasa { get; init; }
+public int? idTipoTasa { get; init; }
 
     [Column("idTasa")]
-public int? IdTasa { get; init; }
+public int? idTasa { get; init; }
 
     [Column("nMonTasa")]
-public decimal? NMonTasa { get; init; }
+public decimal? nMonTasa { get; init; }
 
     [Column("idMoneda")]
-public int? IdMoneda { get; init; }
+public int? idMoneda { get; init; }
 
     [Column("idAgencia")]
-public int? IdAgencia { get; init; }
+public int? idAgencia { get; init; }
 
     [Column("idUsuario")]
-public int? IdUsuario { get; init; }
+public int? idUsuario { get; init; }
 
     [Column("idUsuarioqBlo")]
-public int? IdUsuarioqBlo { get; init; }
+public int? idUsuarioqBlo { get; init; }
 
     [Column("nPlazoCta")]
-public int? NPlazoCta { get; init; }
+public int? nPlazoCta { get; init; }
 
     [Column("nMontoDeposito")]
-public decimal? NMontoDeposito { get; init; }
+public decimal? nMontoDeposito { get; init; }
 
     [Column("nInteresGen")]
-public decimal? NInteresGen { get; init; }
+public decimal? nInteresGen { get; init; }
 
     [Column("nInteresPag")]
-public decimal? NInteresPag { get; init; }
+public decimal? nInteresPag { get; init; }
 
     [Column("nMonIntDev")]
-public decimal? NMonIntDev { get; init; }
+public decimal? nMonIntDev { get; init; }
 
     [Column("nSaldoDis")]
-public decimal? NSaldoDis { get; init; }
+public decimal? nSaldoDis { get; init; }
 
     [Column("nSaldoCnt")]
-public decimal? NSaldoCnt { get; init; }
+public decimal? nSaldoCnt { get; init; }
 
     [Column("nMonIntTot")]
-public decimal? NMonIntTot { get; init; }
+public decimal? nMonIntTot { get; init; }
 
     [Column("dFechaApertura")]
-public Cassandra.LocalDate? DFechaApertura { get; init; }
+public Cassandra.LocalDate? dFechaApertura { get; init; }
 
     [Column("dFechaCancelacion")]
-public Cassandra.LocalDate? DFechaCancelacion { get; init; }
+public Cassandra.LocalDate? dFechaCancelacion { get; init; }
 
     [Column("nNumeroFirmas")]
-public int? NNumeroFirmas { get; init; }
+public int? nNumeroFirmas { get; init; }
 
     [Column("idCaracteristica")]
-public int? IdCaracteristica { get; init; }
+public int? idCaracteristica { get; init; }
 
     [Column("idUsuAsig")]
-public int? IdUsuAsig { get; init; }
+public int? idUsuAsig { get; init; }
 
     [Column("lisBloqCta")]
-public bool? LisBloqCta { get; init; }
+public bool? lisBloqCta { get; init; }
 
     [Column("nMonTotBloq")]
-public decimal? NMonTotBloq { get; init; }
+public decimal? nMonTotBloq { get; init; }
 
     [Column("nTasaCancelacion")]
-public decimal? NTasaCancelacion { get; init; }
+public decimal? nTasaCancelacion { get; init; }
 
     [Column("dFecUltMov")]
-public System.DateTime? DFecUltMov { get; init; }
+public System.DateTime? dFecUltMov { get; init; }
 
     [Column("cRucEmpleador")]
-public string? CRucEmpleador { get; init; }
+public string? cRucEmpleador { get; init; }
 
     [Column("lInactiva")]
-public bool? LInactiva { get; init; }
+public bool? lInactiva { get; init; }
 
     [Column("lIsAfectoITF")]
-public bool? LIsAfectoItf { get; init; }
+public bool? lIsAfectoITF { get; init; }
 
     [Column("lIsCtaOrdPago")]
-public bool? LIsCtaOrdPago { get; init; }
+public bool? lIsCtaOrdPago { get; init; }
 
     [Column("idRenovacion")]
-public int? IdRenovacion { get; init; }
+public int? idRenovacion { get; init; }
 
     [Column("idPagoInt")]
-public int? IdPagoInt { get; init; }
+public int? idPagoInt { get; init; }
 
     [Column("idTipoPersona")]
-public int? IdTipoPersona { get; init; }
+public int? idTipoPersona { get; init; }
 
     [Column("dFecCapitalizacion")]
-public Cassandra.LocalDate? DFecCapitalizacion { get; init; }
+public Cassandra.LocalDate? dFecCapitalizacion { get; init; }
 
     [Column("cNroCuenta")]
-public string? CNroCuenta { get; init; }
+public string? cNroCuenta { get; init; }
 
     [Column("idCuentaRel")]
-public int? IdCuentaRel { get; init; }
+public int? idCuentaRel { get; init; }
 
     [Column("nSaldoMinimo")]
-public decimal? NSaldoMinimo { get; init; }
+public decimal? nSaldoMinimo { get; init; }
 
     [Column("nNumeCertificado")]
-public int? NNumeCertificado { get; init; }
+public int? nNumeCertificado { get; init; }
 
     [Column("lIndGarantia")]
-public bool? LIndGarantia { get; init; }
+public bool? lIndGarantia { get; init; }
 
     [Column("dFechaAperturaIni")]
-public Cassandra.LocalDate? DFechaAperturaIni { get; init; }
+public Cassandra.LocalDate? dFechaAperturaIni { get; init; }
 
     [Column("dFechaAtencion")]
-public System.DateTime? DFechaAtencion { get; init; }
+public System.DateTime? dFechaAtencion { get; init; }
 
     [Column("idUsuAtiende")]
-public int? IdUsuAtiende { get; init; }
+public int? idUsuAtiende { get; init; }
 
     [Column("nDiaPagoInt")]
-public int? NDiaPagoInt { get; init; }
+public int? nDiaPagoInt { get; init; }
 
     [Column("cDescripcionCta")]
-public string? CDescripcionCta { get; init; }
+public string? cDescripcionCta { get; init; }
 
     [Column("idTipoEnvioEstCta")]
-public int? IdTipoEnvioEstCta { get; init; }
+public int? idTipoEnvioEstCta { get; init; }
 
     [Column("cDireccionEnvioEstCta")]
-public string? CDireccionEnvioEstCta { get; init; }
+public string? cDireccionEnvioEstCta { get; init; }
 
     [Column("idOrigenFondo")]
-public int? IdOrigenFondo { get; init; }
+public int? idOrigenFondo { get; init; }
 
     [Column("idObjetoAho")]
-public int? IdObjetoAho { get; init; }
+public int? idObjetoAho { get; init; }
 
     [Column("cNumeroCCI")]
-public string? CNumeroCci { get; init; }
+public string? cNumeroCCI { get; init; }
 
     [Column("nMontoApertura")]
-public decimal? NMontoApertura { get; init; }
+public decimal? nMontoApertura { get; init; }
 
     [Column("nNroImpresionExtCta")]
-public int? NNroImpresionExtCta { get; init; }
+public int? nNroImpresionExtCta { get; init; }
 
     [Column("nMontoApeIni")]
-public decimal? NMontoApeIni { get; init; }
+public decimal? nMontoApeIni { get; init; }
 
     [Column("dFechaDevengado")]
-public Cassandra.LocalDate? DFechaDevengado { get; init; }
+public Cassandra.LocalDate? dFechaDevengado { get; init; }
 
     [Column("nIntDevTmp")]
-public decimal NIntDevTmp { get; init; }
+public decimal nIntDevTmp { get; init; }
 
     [Column("idCuentaCreditoApertura")]
-public int? IdCuentaCreditoApertura { get; init; }
+public int? idCuentaCreditoApertura { get; init; }
 
     [Column("lCuentaDepositoAutomatico")]
-public int? LCuentaDepositoAutomatico { get; init; }
+public int? lCuentaDepositoAutomatico { get; init; }
 
     [Column("idCanalRegistro")]
-public int? IdCanalRegistro { get; init; }
+public int? idCanalRegistro { get; init; }
 
     [Column("idMotivoAnulacionDep")]
-public int? IdMotivoAnulacionDep { get; init; }
+public int? idMotivoAnulacionDep { get; init; }
 
     [Column("nDiasExecPenCuenta")]
-public int? NDiasExecPenCuenta { get; init; }
+public int? nDiasExecPenCuenta { get; init; }
 
     [Column("idModoDesembolsoCli")]
-public int? IdModoDesembolsoCli { get; init; }
+public int? idModoDesembolsoCli { get; init; }
 
     [Column("idSolicitudCre")]
-public int? IdSolicitudCre { get; init; }
+public int? idSolicitudCre { get; init; }
 
     [Column("lAlertaSms")]
-public bool? LAlertaSms { get; init; }
+public bool? lAlertaSms { get; init; }
 
     [Column("nRevisadoChecklist")]
-public int NRevisadoChecklist { get; init; }
+public int nRevisadoChecklist { get; init; }
 
     [Column("idTipoFirma")]
-public int IdTipoFirma { get; init; }
+public int idTipoFirma { get; init; }
 
     [Column("nPlazoMeses")]
-public int? NPlazoMeses { get; init; }
+public int? nPlazoMeses { get; init; }
 }

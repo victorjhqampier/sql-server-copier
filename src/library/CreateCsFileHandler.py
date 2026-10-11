@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import re
+import unicodedata
 from pathlib import Path
 from typing import Sequence
 
@@ -42,6 +43,7 @@ class CreateCsFileHandler:
 
     @staticmethod
     def _pascal_case(value: str) -> str:
+        value = unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode("ascii")
         words = re.sub(r"([a-z0-9])([A-Z])", r"\1 \2", value)
         words = re.sub(r"([A-Z]+)([A-Z][a-z])", r"\1 \2", words)
         parts = [part for part in re.split(r"[^A-Za-z0-9]+", words) if part]
@@ -86,7 +88,7 @@ class CreateCsFileHandler:
         if column.name in clustering_key:
             attributes.append(f"[ClusteringKey({clustering_key.index(column.name)})]")
         attributes.append(f'[Column("{column.name}")]')
-        property_name = column.cs_property_name or self._pascal_case(column.name)
+        property_name = column.cs_property_name or column.name
         return "\n".join([*attributes, f"public {self._cs_type_for(column)} {property_name} {{ get; init; }}"])
 
     def build_create_table(

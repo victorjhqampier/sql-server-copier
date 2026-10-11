@@ -7,11 +7,11 @@ internal sealed class SiFinModalidadConsultaCci
 {
     [PartitionKey(0)]
 [Column("idModalidadConsultaCCI")]
-public int IdModalidadConsultaCci { get; init; }
+public int idModalidadConsultaCCI { get; init; }
 
     [Column("cModalidadConsultaCCI")]
-public string? CModalidadConsultaCci { get; init; }
+public string? cModalidadConsultaCCI { get; init; }
 
     [Column("lVigente")]
-public bool? LVigente { get; init; }
+public bool? lVigente { get; init; }
 }

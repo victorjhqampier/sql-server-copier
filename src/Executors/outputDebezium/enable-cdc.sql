@@ -52,14 +52,6 @@ IF NOT EXISTS (SELECT 1 FROM cdc.change_tables WHERE source_object_id = OBJECT_I
     EXEC sys.sp_cdc_enable_table @source_schema = N'dbo', @source_name = N'SI_FinModalidadConsultaCCI', @role_name = NULL, @supports_net_changes = 0;
 GO
 
-IF NOT EXISTS (SELECT 1 FROM cdc.change_tables WHERE source_object_id = OBJECT_ID(N'dbo.SI_FinTipoIntervencionCre'))
-    EXEC sys.sp_cdc_enable_table @source_schema = N'dbo', @source_name = N'SI_FinTipoIntervencionCre', @role_name = NULL, @supports_net_changes = 0;
-GO
-
-IF NOT EXISTS (SELECT 1 FROM cdc.change_tables WHERE source_object_id = OBJECT_ID(N'dbo.SI_FinPlaPagDepPro'))
-    EXEC sys.sp_cdc_enable_table @source_schema = N'dbo', @source_name = N'SI_FinPlaPagDepPro', @role_name = NULL, @supports_net_changes = 0;
-GO
-
 IF NOT EXISTS (SELECT 1 FROM cdc.change_tables WHERE source_object_id = OBJECT_ID(N'dbo.SI_FinAgencia'))
     EXEC sys.sp_cdc_enable_table @source_schema = N'dbo', @source_name = N'SI_FinAgencia', @role_name = NULL, @supports_net_changes = 0;
 GO

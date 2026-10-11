@@ -7,14 +7,14 @@ internal sealed class SiFinEstadoKardex
 {
     [PartitionKey(0)]
 [Column("idEstadoKardex")]
-public int IdEstadoKardex { get; init; }
+public int idEstadoKardex { get; init; }
 
     [Column("cEstadoKardex")]
-public string? CEstadoKardex { get; init; }
+public string? cEstadoKardex { get; init; }
 
     [Column("lVigente")]
-public bool? LVigente { get; init; }
+public bool? lVigente { get; init; }
 
     [Column("lTipoEstadoOpe")]
-public bool? LTipoEstadoOpe { get; init; }
+public bool? lTipoEstadoOpe { get; init; }
 }

@@ -7,14 +7,14 @@ internal sealed class SiFinCanalCce
 {
     [PartitionKey(0)]
 [Column("idCanalCCE")]
-public int IdCanalCce { get; init; }
+public int idCanalCCE { get; init; }
 
     [Column("cCanalCCE")]
-public string? CCanalCce { get; init; }
+public string? cCanalCCE { get; init; }
 
     [Column("cCodigo")]
-public string? CCodigo { get; init; }
+public string? cCodigo { get; init; }
 
     [Column("lVigente")]
-public bool? LVigente { get; init; }
+public bool? lVigente { get; init; }
 }

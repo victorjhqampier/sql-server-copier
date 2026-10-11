@@ -7,13 +7,13 @@ internal sealed class SiFinKardexCliOperac
 {
     [PartitionKey(0)]
 [Column("idKardex")]
-public int IdKardex { get; init; }
+public int idKardex { get; init; }
 
     [PartitionKey(1)]
 [Column("idCli")]
-public int IdCli { get; init; }
+public int idCli { get; init; }
 
     [PartitionKey(2)]
 [Column("lVigente")]
-public bool LVigente { get; init; }
+public bool lVigente { get; init; }
 }

@@ -7,29 +7,29 @@ internal sealed class SiFinMoneda
 {
     [PartitionKey(0)]
 [Column("idMoneda")]
-public int IdMoneda { get; init; }
+public int idMoneda { get; init; }
 
     [Column("cMoneda")]
-public string? CMoneda { get; init; }
+public string? cMoneda { get; init; }
 
     [Column("lVigente")]
-public bool? LVigente { get; init; }
+public bool? lVigente { get; init; }
 
     [Column("CodigoISO")]
-public string? CodigoIso { get; init; }
+public string? CodigoISO { get; init; }
 
     [Column("cCodSBS")]
-public string? CCodSbs { get; init; }
+public string? cCodSBS { get; init; }
 
     [Column("cSimbolo")]
-public string? CSimbolo { get; init; }
+public string? cSimbolo { get; init; }
 
     [Column("cContable")]
-public string? CContable { get; init; }
+public string? cContable { get; init; }
 
     [Column("lComision")]
-public bool? LComision { get; init; }
+public bool? lComision { get; init; }
 
     [Column("cCodCCE")]
-public string? CCodCce { get; init; }
+public string? cCodCCE { get; init; }
 }

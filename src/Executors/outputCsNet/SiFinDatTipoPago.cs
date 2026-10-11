@@ -7,88 +7,88 @@ internal sealed class SiFinDatTipoPago
 {
     [PartitionKey(0)]
 [Column("idkardex")]
-public int Idkardex { get; init; }
+public int idkardex { get; init; }
 
     [PartitionKey(1)]
 [Column("idTipoValorado")]
-public int IdTipoValorado { get; init; }
+public int idTipoValorado { get; init; }
 
     [PartitionKey(2)]
 [Column("idCuenta")]
-public int IdCuenta { get; init; }
+public int idCuenta { get; init; }
 
     [Column("cNroCuentaDoc")]
-public string? CNroCuentaDoc { get; init; }
+public string? cNroCuentaDoc { get; init; }
 
     [Column("cNroDocumento")]
-public string? CNroDocumento { get; init; }
+public string? cNroDocumento { get; init; }
 
     [Column("cSerieDocumento")]
-public string? CSerieDocumento { get; init; }
+public string? cSerieDocumento { get; init; }
 
     [Column("idEntidad")]
-public int IdEntidad { get; init; }
+public int idEntidad { get; init; }
 
     [Column("dFechaReg")]
-public Cassandra.LocalDate? DFechaReg { get; init; }
+public Cassandra.LocalDate? dFechaReg { get; init; }
 
     [Column("nDiasValoriz")]
-public int NDiasValoriz { get; init; }
+public int nDiasValoriz { get; init; }
 
     [Column("nEstadoValoriz")]
-public int NEstadoValoriz { get; init; }
+public int nEstadoValoriz { get; init; }
 
     [Column("idAgencia")]
-public int? IdAgencia { get; init; }
+public int? idAgencia { get; init; }
 
     [Column("idUsuarioVal")]
-public int? IdUsuarioVal { get; init; }
+public int? idUsuarioVal { get; init; }
 
     [Column("dFechaVal")]
-public Cassandra.LocalDate? DFechaVal { get; init; }
+public Cassandra.LocalDate? dFechaVal { get; init; }
 
     [Column("cMotivo")]
-public string? CMotivo { get; init; }
+public string? cMotivo { get; init; }
 
     [Column("lVigente")]
-public bool? LVigente { get; init; }
+public bool? lVigente { get; init; }
 
     [Column("idCuentaRel")]
-public int? IdCuentaRel { get; init; }
+public int? idCuentaRel { get; init; }
 
     [Column("idMoneda")]
-public int? IdMoneda { get; init; }
+public int? idMoneda { get; init; }
 
     [Column("nMontoDoc")]
-public decimal? NMontoDoc { get; init; }
+public decimal? nMontoDoc { get; init; }
 
     [Column("dFechaEmiDoc")]
-public Cassandra.LocalDate? DFechaEmiDoc { get; init; }
+public Cassandra.LocalDate? dFechaEmiDoc { get; init; }
 
     [Column("nNroFolio")]
-public int? NNroFolio { get; init; }
+public int? nNroFolio { get; init; }
 
     [Column("idEntidadDestino")]
-public int? IdEntidadDestino { get; init; }
+public int? idEntidadDestino { get; init; }
 
     [Column("cNroCtaDestino")]
-public string? CNroCtaDestino { get; init; }
+public string? cNroCtaDestino { get; init; }
 
     [Column("lisMismaCta")]
-public bool? LisMismaCta { get; init; }
+public bool? lisMismaCta { get; init; }
 
     [Column("dFecHorReg")]
-public System.DateTime? DFecHorReg { get; init; }
+public System.DateTime? dFecHorReg { get; init; }
 
     [Column("idUsuActDatos")]
-public int? IdUsuActDatos { get; init; }
+public int? idUsuActDatos { get; init; }
 
     [Column("dFechaActualiza")]
-public Cassandra.LocalDate? DFechaActualiza { get; init; }
+public Cassandra.LocalDate? dFechaActualiza { get; init; }
 
     [Column("dFecHoraActualiza")]
-public System.DateTime? DFecHoraActualiza { get; init; }
+public System.DateTime? dFecHoraActualiza { get; init; }
 
     [Column("lIndicaActDatos")]
-public bool? LIndicaActDatos { get; init; }
+public bool? lIndicaActDatos { get; init; }
 }

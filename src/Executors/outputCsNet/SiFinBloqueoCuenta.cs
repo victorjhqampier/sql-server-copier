@@ -7,65 +7,65 @@ internal sealed class SiFinBloqueoCuenta
 {
     [PartitionKey(0)]
 [Column("idBloCta")]
-public int IdBloCta { get; init; }
+public int idBloCta { get; init; }
 
     [Column("idCuenta")]
-public int IdCuenta { get; init; }
+public int idCuenta { get; init; }
 
     [Column("idBloqueo")]
-public int IdBloqueo { get; init; }
+public int idBloqueo { get; init; }
 
     [Column("idCaracteristicaBloq")]
-public int IdCaracteristicaBloq { get; init; }
+public int idCaracteristicaBloq { get; init; }
 
     [Column("nMonBloqueo")]
-public decimal NMonBloqueo { get; init; }
+public decimal nMonBloqueo { get; init; }
 
     [Column("cDesMotivo")]
-public string CDesMotivo { get; init; }
+public string cDesMotivo { get; init; }
 
     [Column("lBloqueado")]
-public bool? LBloqueado { get; init; }
+public bool? lBloqueado { get; init; }
 
     [Column("idUsuBloq")]
-public int? IdUsuBloq { get; init; }
+public int? idUsuBloq { get; init; }
 
     [Column("dFechaBloq")]
-public Cassandra.LocalDate? DFechaBloq { get; init; }
+public Cassandra.LocalDate? dFechaBloq { get; init; }
 
     [Column("idUsuDesbloq")]
-public int? IdUsuDesbloq { get; init; }
+public int? idUsuDesbloq { get; init; }
 
     [Column("dFechaDesbloq")]
-public Cassandra.LocalDate? DFechaDesbloq { get; init; }
+public Cassandra.LocalDate? dFechaDesbloq { get; init; }
 
     [Column("idTipoSolicitante")]
-public int? IdTipoSolicitante { get; init; }
+public int? idTipoSolicitante { get; init; }
 
     [Column("cNombreSolicitante")]
-public string? CNombreSolicitante { get; init; }
+public string? cNombreSolicitante { get; init; }
 
     [Column("idTipoSolDesbloqueo")]
-public int? IdTipoSolDesbloqueo { get; init; }
+public int? idTipoSolDesbloqueo { get; init; }
 
     [Column("cNombreSolDesbloqueo")]
-public string? CNombreSolDesbloqueo { get; init; }
+public string? cNombreSolDesbloqueo { get; init; }
 
     [Column("lvigente")]
-public bool Lvigente { get; init; }
+public bool lvigente { get; init; }
 
     [Column("dFechaDocBloqueo")]
-public Cassandra.LocalDate? DFechaDocBloqueo { get; init; }
+public Cassandra.LocalDate? dFechaDocBloqueo { get; init; }
 
     [Column("dFecHoraBloq")]
-public System.DateTime? DFecHoraBloq { get; init; }
+public System.DateTime? dFecHoraBloq { get; init; }
 
     [Column("cMotivoDesbloq")]
-public string? CMotivoDesbloq { get; init; }
+public string? cMotivoDesbloq { get; init; }
 
     [Column("dFecHoraDesbloq")]
-public System.DateTime? DFecHoraDesbloq { get; init; }
+public System.DateTime? dFecHoraDesbloq { get; init; }
 
     [Column("idSolicitud")]
-public int? IdSolicitud { get; init; }
+public int? idSolicitud { get; init; }
 }

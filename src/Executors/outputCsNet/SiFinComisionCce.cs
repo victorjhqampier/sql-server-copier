@@ -7,86 +7,86 @@ internal sealed class SiFinComisionCce
 {
     [PartitionKey(0)]
 [Column("idComisionCCE")]
-public int IdComisionCce { get; init; }
+public int idComisionCCE { get; init; }
 
     [Column("cCodigo")]
-public string? CCodigo { get; init; }
+public string? cCodigo { get; init; }
 
     [Column("cCanalAndes")]
-public string? CCanalAndes { get; init; }
+public string? cCanalAndes { get; init; }
 
     [Column("idCanal")]
-public int? IdCanal { get; init; }
+public int? idCanal { get; init; }
 
     [Column("cTipo")]
-public string? CTipo { get; init; }
+public string? cTipo { get; init; }
 
     [Column("cOrigen")]
-public string? COrigen { get; init; }
+public string? cOrigen { get; init; }
 
     [Column("cDestino")]
-public string? CDestino { get; init; }
+public string? cDestino { get; init; }
 
     [Column("dPeriodoInicial")]
-public System.DateTime? DPeriodoInicial { get; init; }
+public System.DateTime? dPeriodoInicial { get; init; }
 
     [Column("dPeriodoFinal")]
-public System.DateTime? DPeriodoFinal { get; init; }
+public System.DateTime? dPeriodoFinal { get; init; }
 
     [Column("cTipOpeOriginante")]
-public string? CTipOpeOriginante { get; init; }
+public string? cTipOpeOriginante { get; init; }
 
     [Column("cTipoTransferencia")]
-public string? CTipoTransferencia { get; init; }
+public string? cTipoTransferencia { get; init; }
 
     [Column("cModalidad")]
-public string? CModalidad { get; init; }
+public string? cModalidad { get; init; }
 
     [Column("cTipoPersona")]
-public string? CTipoPersona { get; init; }
+public string? cTipoPersona { get; init; }
 
     [Column("cCanal")]
-public string? CCanal { get; init; }
+public string? cCanal { get; init; }
 
     [Column("cCodConcepDebito")]
-public string? CCodConcepDebito { get; init; }
+public string? cCodConcepDebito { get; init; }
 
     [Column("cMoneda")]
-public string? CMoneda { get; init; }
+public string? cMoneda { get; init; }
 
     [Column("idMoneda")]
-public int? IdMoneda { get; init; }
+public int? idMoneda { get; init; }
 
     [Column("nMontoMin")]
-public decimal? NMontoMin { get; init; }
+public decimal? nMontoMin { get; init; }
 
     [Column("nMontoMax")]
-public decimal? NMontoMax { get; init; }
+public decimal? nMontoMax { get; init; }
 
     [Column("nComisionVariable")]
-public decimal? NComisionVariable { get; init; }
+public decimal? nComisionVariable { get; init; }
 
     [Column("nComisionVarMin")]
-public decimal? NComisionVarMin { get; init; }
+public decimal? nComisionVarMin { get; init; }
 
     [Column("nComisionVarMax")]
-public decimal? NComisionVarMax { get; init; }
+public decimal? nComisionVarMax { get; init; }
 
     [Column("nComisionFija")]
-public decimal? NComisionFija { get; init; }
+public decimal? nComisionFija { get; init; }
 
     [Column("cPagadoPor")]
-public string? CPagadoPor { get; init; }
+public string? cPagadoPor { get; init; }
 
     [Column("idUsuReg")]
-public int? IdUsuReg { get; init; }
+public int? idUsuReg { get; init; }
 
     [Column("dFechaRegistro")]
-public System.DateTime? DFechaRegistro { get; init; }
+public System.DateTime? dFechaRegistro { get; init; }
 
     [Column("dFechaModificacion")]
-public System.DateTime? DFechaModificacion { get; init; }
+public System.DateTime? dFechaModificacion { get; init; }
 
     [Column("lVigente")]
-public bool? LVigente { get; init; }
+public bool? lVigente { get; init; }
 }

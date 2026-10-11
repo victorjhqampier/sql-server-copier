@@ -7,68 +7,68 @@ internal sealed class SiFinDetalleOpeRechazado
 {
     [PartitionKey(0)]
 [Column("idDetalleOpeRechazado")]
-public int IdDetalleOpeRechazado { get; init; }
+public int idDetalleOpeRechazado { get; init; }
 
     [Column("nMontoOperacion")]
-public decimal? NMontoOperacion { get; init; }
+public decimal? nMontoOperacion { get; init; }
 
     [Column("idTipoOperacion")]
-public int? IdTipoOperacion { get; init; }
+public int? idTipoOperacion { get; init; }
 
     [Column("idEntidadOperacion")]
-public int? IdEntidadOperacion { get; init; }
+public int? idEntidadOperacion { get; init; }
 
     [Column("nComision")]
-public decimal? NComision { get; init; }
+public decimal? nComision { get; init; }
 
     [Column("idCargoComision")]
-public int? IdCargoComision { get; init; }
+public int? idCargoComision { get; init; }
 
     [Column("idAmbitoTransferencia")]
-public int? IdAmbitoTransferencia { get; init; }
+public int? idAmbitoTransferencia { get; init; }
 
     [Column("idConceptoComision")]
-public int? IdConceptoComision { get; init; }
+public int? idConceptoComision { get; init; }
 
     [Column("idModalidadConsultaCCI")]
-public int? IdModalidadConsultaCci { get; init; }
+public int? idModalidadConsultaCCI { get; init; }
 
     [Column("cNumeroCCIOrigen")]
-public string? CNumeroCciOrigen { get; init; }
+public string? cNumeroCCIOrigen { get; init; }
 
     [Column("cNumeroCCIDestino")]
-public string? CNumeroCciDestino { get; init; }
+public string? cNumeroCCIDestino { get; init; }
 
     [Column("cCodigoOperacion")]
-public string? CCodigoOperacion { get; init; }
+public string? cCodigoOperacion { get; init; }
 
     [Column("cCodigoOperacionOrden")]
-public string? CCodigoOperacionOrden { get; init; }
+public string? cCodigoOperacionOrden { get; init; }
 
     [Column("cNumeroCelDestino")]
-public string? CNumeroCelDestino { get; init; }
+public string? cNumeroCelDestino { get; init; }
 
     [Column("lRechazadoCCE")]
-public bool? LRechazadoCce { get; init; }
+public bool? lRechazadoCCE { get; init; }
 
     [Column("cCodigoRechazado")]
-public string? CCodigoRechazado { get; init; }
+public string? cCodigoRechazado { get; init; }
 
     [Column("dFechaHoraOpe")]
-public System.DateTime? DFechaHoraOpe { get; init; }
+public System.DateTime? dFechaHoraOpe { get; init; }
 
     [Column("idCanal")]
-public int? IdCanal { get; init; }
+public int? idCanal { get; init; }
 
     [Column("cDocumentoID")]
-public string? CDocumentoId { get; init; }
+public string? cDocumentoID { get; init; }
 
     [Column("idMoneda")]
-public int? IdMoneda { get; init; }
+public int? idMoneda { get; init; }
 
     [Column("dFechaHoraCCEOrden")]
-public System.DateTime? DFechaHoraCceOrden { get; init; }
+public System.DateTime? dFechaHoraCCEOrden { get; init; }
 
     [Column("lVigente")]
-public bool? LVigente { get; init; }
+public bool? lVigente { get; init; }
 }

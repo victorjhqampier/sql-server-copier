@@ -6,126 +6,126 @@ namespace ScylladbInfrastructure.Collections.Tables;
 internal sealed class SiFinSaldoDeposito
 {
     [Column("dFecha")]
-public Cassandra.LocalDate? DFecha { get; init; }
+public Cassandra.LocalDate? dFecha { get; init; }
 
     [Column("idCuenta")]
-public int IdCuenta { get; init; }
+public int idCuenta { get; init; }
 
     [Column("idCli")]
-public int? IdCli { get; init; }
+public int? idCli { get; init; }
 
     [Column("idProducto")]
-public int? IdProducto { get; init; }
+public int? idProducto { get; init; }
 
     [Column("idEstado")]
-public int? IdEstado { get; init; }
+public int? idEstado { get; init; }
 
     [Column("IdMoneda")]
 public int? IdMoneda { get; init; }
 
     [Column("nSaldo")]
-public decimal? NSaldo { get; init; }
+public decimal? nSaldo { get; init; }
 
     [Column("idAgencia")]
-public int? IdAgencia { get; init; }
+public int? idAgencia { get; init; }
 
     [Column("idCondicionContable")]
-public int? IdCondicionContable { get; init; }
+public int? idCondicionContable { get; init; }
 
     [Column("cRucEmpleador")]
-public string? CRucEmpleador { get; init; }
+public string? cRucEmpleador { get; init; }
 
     [Column("lGarantia")]
-public bool? LGarantia { get; init; }
+public bool? lGarantia { get; init; }
 
     [Column("idPromotor")]
-public int? IdPromotor { get; init; }
+public int? idPromotor { get; init; }
 
     [Column("nMonApertura")]
-public decimal? NMonApertura { get; init; }
+public decimal? nMonApertura { get; init; }
 
     [Column("nMonDepositos")]
-public decimal? NMonDepositos { get; init; }
+public decimal? nMonDepositos { get; init; }
 
     [Column("nMonRetiros")]
-public decimal? NMonRetiros { get; init; }
+public decimal? nMonRetiros { get; init; }
 
     [Column("nMonCancelacion")]
-public decimal? NMonCancelacion { get; init; }
+public decimal? nMonCancelacion { get; init; }
 
     [Column("nMonCapitalizaInt")]
-public decimal? NMonCapitalizaInt { get; init; }
+public decimal? nMonCapitalizaInt { get; init; }
 
     [Column("nMonRetiroInteres")]
-public decimal? NMonRetiroInteres { get; init; }
+public decimal? nMonRetiroInteres { get; init; }
 
     [Column("nMonCargos")]
-public decimal? NMonCargos { get; init; }
+public decimal? nMonCargos { get; init; }
 
     [Column("nMonIntDevengado")]
-public decimal? NMonIntDevengado { get; init; }
+public decimal? nMonIntDevengado { get; init; }
 
     [Column("nMonBloqGarantia")]
-public decimal? NMonBloqGarantia { get; init; }
+public decimal? nMonBloqGarantia { get; init; }
 
     [Column("nMonBloqJudicial")]
-public decimal? NMonBloqJudicial { get; init; }
+public decimal? nMonBloqJudicial { get; init; }
 
     [Column("nMonBloqSunat")]
-public decimal? NMonBloqSunat { get; init; }
+public decimal? nMonBloqSunat { get; init; }
 
     [Column("dFechaApertura")]
-public Cassandra.LocalDate? DFechaApertura { get; init; }
+public Cassandra.LocalDate? dFechaApertura { get; init; }
 
     [Column("dFechaUltRenovacion")]
-public Cassandra.LocalDate? DFechaUltRenovacion { get; init; }
+public Cassandra.LocalDate? dFechaUltRenovacion { get; init; }
 
     [Column("nTasa")]
-public decimal? NTasa { get; init; }
+public decimal? nTasa { get; init; }
 
     [Column("nInteresPag")]
-public decimal? NInteresPag { get; init; }
+public decimal? nInteresPag { get; init; }
 
     [Column("nInteresGen")]
-public decimal? NInteresGen { get; init; }
+public decimal? nInteresGen { get; init; }
 
     [Column("nMontoApertura")]
-public decimal? NMontoApertura { get; init; }
+public decimal? nMontoApertura { get; init; }
 
     [Column("nNumeroFirmas")]
-public int? NNumeroFirmas { get; init; }
+public int? nNumeroFirmas { get; init; }
 
     [Column("lInactiva")]
-public bool? LInactiva { get; init; }
+public bool? lInactiva { get; init; }
 
     [Column("lIsAfectoITF")]
-public bool? LIsAfectoItf { get; init; }
+public bool? lIsAfectoITF { get; init; }
 
     [Column("lIsCtaOrdPago")]
-public bool? LIsCtaOrdPago { get; init; }
+public bool? lIsCtaOrdPago { get; init; }
 
     [Column("dFecCapitalizacion")]
-public Cassandra.LocalDate? DFecCapitalizacion { get; init; }
+public Cassandra.LocalDate? dFecCapitalizacion { get; init; }
 
     [Column("idTasa")]
-public int? IdTasa { get; init; }
+public int? idTasa { get; init; }
 
     [Column("idCaracteristica")]
-public int? IdCaracteristica { get; init; }
+public int? idCaracteristica { get; init; }
 
     [Column("idTipoEnvioEstCta")]
-public int? IdTipoEnvioEstCta { get; init; }
+public int? idTipoEnvioEstCta { get; init; }
 
     [Column("cDireccionEnvioEstCta")]
-public string? CDireccionEnvioEstCta { get; init; }
+public string? cDireccionEnvioEstCta { get; init; }
 
     [Column("nNroImpresionExtCta")]
-public int? NNroImpresionExtCta { get; init; }
+public int? nNroImpresionExtCta { get; init; }
 
     [Column("idTipoPersona")]
-public int IdTipoPersona { get; init; }
+public int idTipoPersona { get; init; }
 
     [PartitionKey(0)]
 [Column("idSaldo")]
-public long IdSaldo { get; init; }
+public long idSaldo { get; init; }
 }

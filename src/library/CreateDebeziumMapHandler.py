@@ -14,9 +14,11 @@ class CreateDebeziumMapHandler:
         self,
         config_path: Path | str,
         cdc_sql_path: Path | str | None = None,
+        topic_prefix: str = "arify",
     ) -> None:
         self._config_path = Path(config_path)
         self._cdc_sql_path = Path(cdc_sql_path) if cdc_sql_path else None
+        self._topic_prefix = topic_prefix
 
     @staticmethod
     def _debezium_table_name(table_name: str) -> str:
@@ -35,6 +37,7 @@ class CreateDebeziumMapHandler:
 
         configuration = json.loads(self._config_path.read_text(encoding="utf-8"))
         configuration["table.include.list"] = self.build_table_include_list(tables)
+        configuration["topic.prefix"] = self._topic_prefix
         self._config_path.write_text(f"{json.dumps(configuration, indent=2)}\n", encoding="utf-8")
         return self._config_path
 

@@ -7,23 +7,23 @@ internal sealed class SiFinRegDocumentoCts
 {
     [PartitionKey(0)]
 [Column("idRegDoc")]
-public int IdRegDoc { get; init; }
+public int idRegDoc { get; init; }
 
     [Column("idCuenta")]
-public int IdCuenta { get; init; }
+public int idCuenta { get; init; }
 
     [Column("idDoc")]
-public int IdDoc { get; init; }
+public int idDoc { get; init; }
 
     [Column("cDescripcion")]
-public string CDescripcion { get; init; }
+public string cDescripcion { get; init; }
 
     [Column("bEnviado")]
-public bool BEnviado { get; init; }
+public bool bEnviado { get; init; }
 
     [Column("bFirmado")]
-public bool BFirmado { get; init; }
+public bool bFirmado { get; init; }
 
     [Column("lVigente")]
-public bool? LVigente { get; init; }
+public bool? lVigente { get; init; }
 }

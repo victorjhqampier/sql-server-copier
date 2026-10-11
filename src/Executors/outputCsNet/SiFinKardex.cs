@@ -10,113 +10,113 @@ internal sealed class SiFinKardex
 public int IdKardex { get; init; }
 
     [Column("dFechaOpe")]
-public Cassandra.LocalDate DFechaOpe { get; init; }
+public Cassandra.LocalDate dFechaOpe { get; init; }
 
     [Column("dFecHoraOpe")]
-public System.DateTime DFecHoraOpe { get; init; }
+public System.DateTime dFecHoraOpe { get; init; }
 
     [Column("idProducto")]
-public int? IdProducto { get; init; }
+public int? idProducto { get; init; }
 
     [Column("idCanal")]
-public int IdCanal { get; init; }
+public int idCanal { get; init; }
 
     [Column("idMoneda")]
-public int IdMoneda { get; init; }
+public int idMoneda { get; init; }
 
     [Column("IdUsuario")]
 public int? IdUsuario { get; init; }
 
     [Column("idCuenta")]
-public int IdCuenta { get; init; }
+public int idCuenta { get; init; }
 
     [Column("idTipoOperacion")]
-public int IdTipoOperacion { get; init; }
+public int idTipoOperacion { get; init; }
 
     [Column("idEstadoKardex")]
-public int IdEstadoKardex { get; init; }
+public int idEstadoKardex { get; init; }
 
     [Column("IdKardexExtorno")]
 public int? IdKardexExtorno { get; init; }
 
     [Column("nMontoOperacion")]
-public decimal NMontoOperacion { get; init; }
+public decimal nMontoOperacion { get; init; }
 
     [Column("nMontoCapital")]
-public decimal NMontoCapital { get; init; }
+public decimal nMontoCapital { get; init; }
 
     [Column("nMontoInteres")]
-public decimal NMontoInteres { get; init; }
+public decimal nMontoInteres { get; init; }
 
     [Column("nMontoMora")]
-public decimal NMontoMora { get; init; }
+public decimal nMontoMora { get; init; }
 
     [Column("nMontoOtros")]
-public decimal NMontoOtros { get; init; }
+public decimal nMontoOtros { get; init; }
 
     [Column("nITFNormal")]
-public decimal? NItfNormal { get; init; }
+public decimal? nITFNormal { get; init; }
 
     [Column("idTipoIngresoEgreso")]
-public int IdTipoIngresoEgreso { get; init; }
+public int idTipoIngresoEgreso { get; init; }
 
     [Column("IdMotivoExt")]
 public int? IdMotivoExt { get; init; }
 
     [Column("cObservaExt")]
-public string? CObservaExt { get; init; }
+public string? cObservaExt { get; init; }
 
     [Column("idAgeSaldo")]
-public int? IdAgeSaldo { get; init; }
+public int? idAgeSaldo { get; init; }
 
     [Column("idAgeOpera")]
-public int? IdAgeOpera { get; init; }
+public int? idAgeOpera { get; init; }
 
     [Column("idModulo")]
-public int? IdModulo { get; init; }
+public int? idModulo { get; init; }
 
     [Column("idTipoAfeCaj")]
-public int? IdTipoAfeCaj { get; init; }
+public int? idTipoAfeCaj { get; init; }
 
     [Column("nAtrasoPago")]
-public short? NAtrasoPago { get; init; }
+public short? nAtrasoPago { get; init; }
 
     [Column("idTipoPago")]
-public int? IdTipoPago { get; init; }
+public int? idTipoPago { get; init; }
 
     [Column("idTipoPersona")]
-public int? IdTipoPersona { get; init; }
+public int? idTipoPersona { get; init; }
 
     [Column("idCliAfeITF")]
-public int? IdCliAfeItf { get; init; }
+public int? idCliAfeITF { get; init; }
 
     [Column("cNroDNI")]
-public string? CNroDni { get; init; }
+public string? cNroDNI { get; init; }
 
     [Column("cNomCliente")]
-public string? CNomCliente { get; init; }
+public string? cNomCliente { get; init; }
 
     [Column("cDireccion")]
-public string? CDireccion { get; init; }
+public string? cDireccion { get; init; }
 
     [Column("idKardexRelacionado")]
-public int? IdKardexRelacionado { get; init; }
+public int? idKardexRelacionado { get; init; }
 
     [Column("cObservacion")]
-public string? CObservacion { get; init; }
+public string? cObservacion { get; init; }
 
     [Column("nMontoIntComp")]
-public decimal? NMontoIntComp { get; init; }
+public decimal? nMontoIntComp { get; init; }
 
     [Column("idMotivoOperacion")]
-public int? IdMotivoOperacion { get; init; }
+public int? idMotivoOperacion { get; init; }
 
     [Column("idEstablecimiento")]
-public int? IdEstablecimiento { get; init; }
+public int? idEstablecimiento { get; init; }
 
     [Column("idTipoTrxOpe")]
-public int? IdTipoTrxOpe { get; init; }
+public int? idTipoTrxOpe { get; init; }
 
     [Column("dFechaValor")]
-public Cassandra.LocalDate? DFechaValor { get; init; }
+public Cassandra.LocalDate? dFechaValor { get; init; }
 }

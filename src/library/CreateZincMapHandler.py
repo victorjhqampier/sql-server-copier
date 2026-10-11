@@ -69,7 +69,8 @@ class CreateZincMapHandler:
 
         key_columns = set(partition_key) | set(clustering_key)
         return ",".join(
-            f"{column.name}={'key' if column.name in key_columns else 'value'}.{column.name}" for column in columns
+            f"{column.name}={'key' if column.name in key_columns else 'value'}.{column.source_name or column.name}"
+            for column in columns
         )
 
     def create_table(

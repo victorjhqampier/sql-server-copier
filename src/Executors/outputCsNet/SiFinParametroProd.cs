@@ -14,110 +14,110 @@ public int IdProducto { get; init; }
 public int IdMoneda { get; init; }
 
     [Column("lIsInactiva")]
-public bool LIsInactiva { get; init; }
+public bool lIsInactiva { get; init; }
 
     [Column("nPlaInactiva")]
-public int NPlaInactiva { get; init; }
+public int nPlaInactiva { get; init; }
 
     [Column("nPlaCancInac")]
-public int NPlaCancInac { get; init; }
+public int nPlaCancInac { get; init; }
 
     [Column("nMonMinApe")]
-public decimal NMonMinApe { get; init; }
+public decimal nMonMinApe { get; init; }
 
     [Column("nMonMinSalDis")]
-public decimal NMonMinSalDis { get; init; }
+public decimal nMonMinSalDis { get; init; }
 
     [Column("nMonMinOpe")]
-public decimal? NMonMinOpe { get; init; }
+public decimal? nMonMinOpe { get; init; }
 
     [Column("nPlaMinProd")]
-public int NPlaMinProd { get; init; }
+public int nPlaMinProd { get; init; }
 
     [Column("nPlaMaxProd")]
-public int NPlaMaxProd { get; init; }
+public int nPlaMaxProd { get; init; }
 
     [Column("lIsPlazoProd")]
-public bool LIsPlazoProd { get; init; }
+public bool lIsPlazoProd { get; init; }
 
     [Column("lIsRenovProd")]
-public bool LIsRenovProd { get; init; }
+public bool lIsRenovProd { get; init; }
 
     [Column("lIsRequeCert")]
-public bool LIsRequeCert { get; init; }
+public bool lIsRequeCert { get; init; }
 
     [Column("lIsAfectoITF")]
-public bool LIsAfectoItf { get; init; }
+public bool lIsAfectoITF { get; init; }
 
     [Column("lIsTrabFinan")]
-public bool? LIsTrabFinan { get; init; }
+public bool? lIsTrabFinan { get; init; }
 
     [Column("lIsReqPagInt")]
-public bool? LIsReqPagInt { get; init; }
+public bool? lIsReqPagInt { get; init; }
 
     [Column("lIsDefTipPagInt")]
-public bool? LIsDefTipPagInt { get; init; }
+public bool? lIsDefTipPagInt { get; init; }
 
     [Column("lIsReqEmpleador")]
-public bool? LIsReqEmpleador { get; init; }
+public bool? lIsReqEmpleador { get; init; }
 
     [Column("lIsProdTransf")]
-public bool? LIsProdTransf { get; init; }
+public bool? lIsProdTransf { get; init; }
 
     [Column("lIsProdCTS")]
-public bool? LIsProdCts { get; init; }
+public bool? lIsProdCTS { get; init; }
 
     [Column("lIsDepAhoProg")]
-public bool? LIsDepAhoProg { get; init; }
+public bool? lIsDepAhoProg { get; init; }
 
     [Column("lVigente")]
-public bool LVigente { get; init; }
+public bool lVigente { get; init; }
 
     [Column("nTipCalInt")]
-public int? NTipCalInt { get; init; }
+public int? nTipCalInt { get; init; }
 
     [Column("nPeriodoCap")]
-public int? NPeriodoCap { get; init; }
+public int? nPeriodoCap { get; init; }
 
     [Column("lIsOpeRetiro")]
-public bool? LIsOpeRetiro { get; init; }
+public bool? lIsOpeRetiro { get; init; }
 
     [Column("lIsOpeDeposito")]
-public bool? LIsOpeDeposito { get; init; }
+public bool? lIsOpeDeposito { get; init; }
 
     [Column("lIsCtaCteRel")]
-public bool? LIsCtaCteRel { get; init; }
+public bool? lIsCtaCteRel { get; init; }
 
     [Column("idProdTasCancel")]
-public int? IdProdTasCancel { get; init; }
+public int? idProdTasCancel { get; init; }
 
     [Column("lIsCtaOrdPago")]
-public bool? LIsCtaOrdPago { get; init; }
+public bool? lIsCtaOrdPago { get; init; }
 
     [Column("idClasifProdDep")]
-public int? IdClasifProdDep { get; init; }
+public int? idClasifProdDep { get; init; }
 
     [Column("lIsDepMenEdad")]
-public bool? LIsDepMenEdad { get; init; }
+public bool? lIsDepMenEdad { get; init; }
 
     [Column("idTipoCapDep")]
-public int? IdTipoCapDep { get; init; }
+public int? idTipoCapDep { get; init; }
 
     [Column("lIsGarantia")]
-public bool? LIsGarantia { get; init; }
+public bool? lIsGarantia { get; init; }
 
     [Column("lActualizaTasaRen")]
-public bool? LActualizaTasaRen { get; init; }
+public bool? lActualizaTasaRen { get; init; }
 
     [Column("idProdTasaRenov")]
-public int? IdProdTasaRenov { get; init; }
+public int? idProdTasaRenov { get; init; }
 
     [Column("nMonMaxApe")]
-public decimal? NMonMaxApe { get; init; }
+public decimal? nMonMaxApe { get; init; }
 
     [Column("nPlaMinProdMeses")]
-public int? NPlaMinProdMeses { get; init; }
+public int? nPlaMinProdMeses { get; init; }
 
     [Column("nPlaMaxProdMeses")]
-public int? NPlaMaxProdMeses { get; init; }
+public int? nPlaMaxProdMeses { get; init; }
 }

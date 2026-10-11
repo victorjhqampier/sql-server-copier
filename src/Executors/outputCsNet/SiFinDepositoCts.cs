@@ -7,17 +7,17 @@ internal sealed class SiFinDepositoCts
 {
     [PartitionKey(0)]
 [Column("idCuenta")]
-public int IdCuenta { get; init; }
+public int idCuenta { get; init; }
 
     [Column("nMontoIntangible")]
-public decimal NMontoIntangible { get; init; }
+public decimal nMontoIntangible { get; init; }
 
     [Column("nMontoDisp")]
-public decimal? NMontoDisp { get; init; }
+public decimal? nMontoDisp { get; init; }
 
     [Column("idEntidad")]
-public int? IdEntidad { get; init; }
+public int? idEntidad { get; init; }
 
     [Column("idEmpleador")]
-public int? IdEmpleador { get; init; }
+public int? idEmpleador { get; init; }
 }

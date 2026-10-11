@@ -7,17 +7,17 @@ internal sealed class SiFinMotivoOperacion
 {
     [PartitionKey(0)]
 [Column("idMotivoOperacion")]
-public int IdMotivoOperacion { get; init; }
+public int idMotivoOperacion { get; init; }
 
     [Column("idTipoOperacion")]
-public int IdTipoOperacion { get; init; }
+public int idTipoOperacion { get; init; }
 
     [Column("cMotivoOperacion")]
-public string CMotivoOperacion { get; init; }
+public string cMotivoOperacion { get; init; }
 
     [Column("lVigente")]
-public bool LVigente { get; init; }
+public bool lVigente { get; init; }
 
     [Column("lReqAutorizacion")]
-public bool? LReqAutorizacion { get; init; }
+public bool? lReqAutorizacion { get; init; }
 }

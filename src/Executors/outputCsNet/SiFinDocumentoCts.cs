@@ -7,14 +7,14 @@ internal sealed class SiFinDocumentoCts
 {
     [PartitionKey(0)]
 [Column("idDocumentoCTS")]
-public int IdDocumentoCts { get; init; }
+public int idDocumentoCTS { get; init; }
 
     [Column("cDocumentoCTS")]
-public string CDocumentoCts { get; init; }
+public string cDocumentoCTS { get; init; }
 
     [Column("idTipoDocumentoCTS")]
-public int IdTipoDocumentoCts { get; init; }
+public int idTipoDocumentoCTS { get; init; }
 
     [Column("lEstado")]
-public bool LEstado { get; init; }
+public bool lEstado { get; init; }
 }

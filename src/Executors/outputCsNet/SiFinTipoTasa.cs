@@ -7,14 +7,14 @@ internal sealed class SiFinTipoTasa
 {
     [PartitionKey(0)]
 [Column("idTipoTasa")]
-public int IdTipoTasa { get; init; }
+public int idTipoTasa { get; init; }
 
     [Column("cTipoTasa")]
-public string? CTipoTasa { get; init; }
+public string? cTipoTasa { get; init; }
 
     [Column("lVigente")]
-public bool? LVigente { get; init; }
+public bool? lVigente { get; init; }
 
     [Column("idModulo")]
-public int? IdModulo { get; init; }
+public int? idModulo { get; init; }
 }

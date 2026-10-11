@@ -7,11 +7,11 @@ internal sealed class SiFinTipoTransaccion
 {
     [PartitionKey(0)]
 [Column("idTipoTransaccion")]
-public int IdTipoTransaccion { get; init; }
+public int idTipoTransaccion { get; init; }
 
     [Column("cTipoTransaccion")]
-public string? CTipoTransaccion { get; init; }
+public string? cTipoTransaccion { get; init; }
 
     [Column("lVigente")]
-public bool? LVigente { get; init; }
+public bool? lVigente { get; init; }
 }

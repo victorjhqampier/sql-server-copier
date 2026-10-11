@@ -7,50 +7,50 @@ internal sealed class SiFinTipoPago
 {
     [PartitionKey(0)]
 [Column("idTipoPago")]
-public int IdTipoPago { get; init; }
+public int idTipoPago { get; init; }
 
     [Column("cDesTipoPago")]
-public string CDesTipoPago { get; init; }
+public string cDesTipoPago { get; init; }
 
     [Column("lVigente")]
-public bool? LVigente { get; init; }
+public bool? lVigente { get; init; }
 
     [Column("lOpeRetiro")]
-public bool? LOpeRetiro { get; init; }
+public bool? lOpeRetiro { get; init; }
 
     [Column("lOpeApertura")]
-public bool? LOpeApertura { get; init; }
+public bool? lOpeApertura { get; init; }
 
     [Column("cCodSBS")]
-public string? CCodSbs { get; init; }
+public string? cCodSBS { get; init; }
 
     [Column("lOpePagoComPago")]
-public bool? LOpePagoComPago { get; init; }
+public bool? lOpePagoComPago { get; init; }
 
     [Column("lPagoCredito")]
-public bool? LPagoCredito { get; init; }
+public bool? lPagoCredito { get; init; }
 
     [Column("lOpeDeposito")]
-public bool? LOpeDeposito { get; init; }
+public bool? lOpeDeposito { get; init; }
 
     [Column("lOpeCancelacion")]
-public bool? LOpeCancelacion { get; init; }
+public bool? lOpeCancelacion { get; init; }
 
     [Column("lOpePagSep")]
-public bool? LOpePagSep { get; init; }
+public bool? lOpePagSep { get; init; }
 
     [Column("lOpeIndemn")]
-public bool? LOpeIndemn { get; init; }
+public bool? lOpeIndemn { get; init; }
 
     [Column("lOrdenCompra")]
-public bool? LOrdenCompra { get; init; }
+public bool? lOrdenCompra { get; init; }
 
     [Column("lOpeBanco")]
-public bool? LOpeBanco { get; init; }
+public bool? lOpeBanco { get; init; }
 
     [Column("nOrdenOpeRetiro")]
-public string? NOrdenOpeRetiro { get; init; }
+public string? nOrdenOpeRetiro { get; init; }
 
     [Column("lAhoProgramado")]
-public bool? LAhoProgramado { get; init; }
+public bool? lAhoProgramado { get; init; }
 }

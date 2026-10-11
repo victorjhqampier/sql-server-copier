@@ -18,8 +18,6 @@ tables_scylladb = [
     {"table": "dbo.SI_FinEntidadCCE"},
     {"table": "dbo.SI_FinEstConsultaCCE"},
     {"table": "dbo.SI_FinModalidadConsultaCCI"},
-    {"table": "dbo.SI_FinTipoIntervencionCre"},
-    {"table": "dbo.SI_FinPlaPagDepPro"},
     {"table": "dbo.SI_FinAgencia"},
     {"table": "dbo.SI_FinCanal"},
     {"table": "dbo.SI_FinMoneda"},

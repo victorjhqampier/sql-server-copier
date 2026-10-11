@@ -7,53 +7,53 @@ internal sealed class SiFinLimiteTransferencia
 {
     [PartitionKey(0)]
 [Column("idLimiteTransferencia")]
-public int IdLimiteTransferencia { get; init; }
+public int idLimiteTransferencia { get; init; }
 
     [Column("idModulo")]
-public int IdModulo { get; init; }
+public int idModulo { get; init; }
 
     [Column("idModalidadConsultaCCI")]
-public int? IdModalidadConsultaCci { get; init; }
+public int? idModalidadConsultaCCI { get; init; }
 
     [Column("idCanal")]
-public int IdCanal { get; init; }
+public int idCanal { get; init; }
 
     [Column("idProducto")]
-public int? IdProducto { get; init; }
+public int? idProducto { get; init; }
 
     [Column("idTipoOperacion")]
-public int? IdTipoOperacion { get; init; }
+public int? idTipoOperacion { get; init; }
 
     [Column("idMoneda")]
-public int? IdMoneda { get; init; }
+public int? idMoneda { get; init; }
 
     [Column("idDirectorioCCE")]
-public int? IdDirectorioCce { get; init; }
+public int? idDirectorioCCE { get; init; }
 
     [Column("idTipoLimite")]
-public int? IdTipoLimite { get; init; }
+public int? idTipoLimite { get; init; }
 
     [Column("idTipoEntidadTrans")]
-public int? IdTipoEntidadTrans { get; init; }
+public int? idTipoEntidadTrans { get; init; }
 
     [Column("idPropiedadTitularTrans")]
-public int? IdPropiedadTitularTrans { get; init; }
+public int? idPropiedadTitularTrans { get; init; }
 
     [Column("nMontoMinimo")]
-public decimal? NMontoMinimo { get; init; }
+public decimal? nMontoMinimo { get; init; }
 
     [Column("nMontoMaximo")]
-public decimal? NMontoMaximo { get; init; }
+public decimal? nMontoMaximo { get; init; }
 
     [Column("lLimitePorDefecto")]
-public bool? LLimitePorDefecto { get; init; }
+public bool? lLimitePorDefecto { get; init; }
 
     [Column("lVigente")]
-public bool? LVigente { get; init; }
+public bool? lVigente { get; init; }
 
     [Column("dFechaInicio")]
-public Cassandra.LocalDate DFechaInicio { get; init; }
+public Cassandra.LocalDate dFechaInicio { get; init; }
 
     [Column("dFechaUpdate")]
-public Cassandra.LocalDate? DFechaUpdate { get; init; }
+public Cassandra.LocalDate? dFechaUpdate { get; init; }
 }

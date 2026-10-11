@@ -7,23 +7,23 @@ internal sealed class SiFinConcepto
 {
     [PartitionKey(0)]
 [Column("idConcepto")]
-public int IdConcepto { get; init; }
+public int idConcepto { get; init; }
 
     [Column("cConcepto")]
-public string? CConcepto { get; init; }
+public string? cConcepto { get; init; }
 
     [Column("lVigente")]
-public bool LVigente { get; init; }
+public bool lVigente { get; init; }
 
     [Column("cNombreCorto")]
-public string? CNombreCorto { get; init; }
+public string? cNombreCorto { get; init; }
 
     [Column("idGrupoCon")]
-public int? IdGrupoCon { get; init; }
+public int? idGrupoCon { get; init; }
 
     [Column("lAplicaContable")]
-public bool? LAplicaContable { get; init; }
+public bool? lAplicaContable { get; init; }
 
     [Column("nOrden")]
-public int? NOrden { get; init; }
+public int? nOrden { get; init; }
 }

@@ -7,11 +7,11 @@ internal sealed class SiFinTipoLimite
 {
     [PartitionKey(0)]
 [Column("idTipoLimite")]
-public int IdTipoLimite { get; init; }
+public int idTipoLimite { get; init; }
 
     [Column("cNombre")]
-public string CNombre { get; init; }
+public string cNombre { get; init; }
 
     [Column("lVigente")]
-public bool? LVigente { get; init; }
+public bool? lVigente { get; init; }
 }

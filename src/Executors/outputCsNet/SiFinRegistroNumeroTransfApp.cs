@@ -7,41 +7,41 @@ internal sealed class SiFinRegistroNumeroTransfApp
 {
     [PartitionKey(0)]
 [Column("idRegistroNumeroTransfApp")]
-public int IdRegistroNumeroTransfApp { get; init; }
+public int idRegistroNumeroTransfApp { get; init; }
 
     [Column("cTelefonoApp")]
-public string? CTelefonoApp { get; init; }
+public string? cTelefonoApp { get; init; }
 
     [Column("idCli")]
-public int? IdCli { get; init; }
+public int? idCli { get; init; }
 
     [Column("idTipoDocumento")]
-public int? IdTipoDocumento { get; init; }
+public int? idTipoDocumento { get; init; }
 
     [Column("cDocumentoID")]
-public string? CDocumentoId { get; init; }
+public string? cDocumentoID { get; init; }
 
     [Column("idCanal")]
-public int? IdCanal { get; init; }
+public int? idCanal { get; init; }
 
     [Column("idClienteApp")]
-public string? IdClienteApp { get; init; }
+public string? idClienteApp { get; init; }
 
     [Column("idModulo")]
-public int? IdModulo { get; init; }
+public int? idModulo { get; init; }
 
     [Column("dFechaRegistro")]
-public System.DateTime? DFechaRegistro { get; init; }
+public System.DateTime? dFechaRegistro { get; init; }
 
     [Column("lTransfInteroperabilidad")]
-public bool? LTransfInteroperabilidad { get; init; }
+public bool? lTransfInteroperabilidad { get; init; }
 
     [Column("idCuenta")]
-public int? IdCuenta { get; init; }
+public int? idCuenta { get; init; }
 
     [Column("cNumeroCCI")]
-public string? CNumeroCci { get; init; }
+public string? cNumeroCCI { get; init; }
 
     [Column("lVigente")]
-public bool? LVigente { get; init; }
+public bool? lVigente { get; init; }
 }

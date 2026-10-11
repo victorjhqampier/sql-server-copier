@@ -7,14 +7,14 @@ internal sealed class SiFinDirectorioCce
 {
     [PartitionKey(0)]
 [Column("idDirectorioCCE")]
-public int IdDirectorioCce { get; init; }
+public int idDirectorioCCE { get; init; }
 
     [Column("cNombre")]
-public string CNombre { get; init; }
+public string cNombre { get; init; }
 
     [Column("cCodigo")]
-public string CCodigo { get; init; }
+public string cCodigo { get; init; }
 
     [Column("lVigente")]
-public bool? LVigente { get; init; }
+public bool? lVigente { get; init; }
 }

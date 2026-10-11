@@ -7,26 +7,26 @@ internal sealed class SiFinOutboxTransaccion
 {
     [PartitionKey(0)]
 [Column("idOutbox")]
-public long IdOutbox { get; init; }
+public long idOutbox { get; init; }
 
     [Column("idTrxIdempotency")]
-public System.Guid IdTrxIdempotency { get; init; }
+public System.Guid idTrxIdempotency { get; init; }
 
     [Column("idCuenta")]
-public int IdCuenta { get; init; }
+public int idCuenta { get; init; }
 
     [Column("nMonto")]
-public decimal NMonto { get; init; }
+public decimal nMonto { get; init; }
 
     [Column("lEsRetiro")]
-public bool LEsRetiro { get; init; }
+public bool lEsRetiro { get; init; }
 
     [Column("lEstaCerrado")]
-public bool LEstaCerrado { get; init; }
+public bool lEstaCerrado { get; init; }
 
     [Column("dFechaRegistro")]
-public System.DateTime DFechaRegistro { get; init; }
+public System.DateTime dFechaRegistro { get; init; }
 
     [Column("dfechaCierre")]
-public System.DateTime? DfechaCierre { get; init; }
+public System.DateTime? dfechaCierre { get; init; }
 }

@@ -7,14 +7,14 @@ internal sealed class SiFinTipoTransferencia
 {
     [PartitionKey(0)]
 [Column("idTiTransfer")]
-public int IdTiTransfer { get; init; }
+public int idTiTransfer { get; init; }
 
     [Column("cDescripcion")]
-public string? CDescripcion { get; init; }
+public string? cDescripcion { get; init; }
 
     [Column("lEstado")]
-public bool LEstado { get; init; }
+public bool lEstado { get; init; }
 
     [Column("idTipoOpeVinc")]
-public int? IdTipoOpeVinc { get; init; }
+public int? idTipoOpeVinc { get; init; }
 }

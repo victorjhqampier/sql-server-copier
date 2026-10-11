@@ -7,8 +7,8 @@ internal sealed class SiFinClasificacionTransferencia
 {
     [PartitionKey(0)]
 [Column("idClasificacionTransferencia")]
-public int IdClasificacionTransferencia { get; init; }
+public int idClasificacionTransferencia { get; init; }
 
     [Column("cTipoEntidad")]
-public string CTipoEntidad { get; init; }
+public string cTipoEntidad { get; init; }
 }

@@ -197,7 +197,8 @@ uv run python -m src.Executors migrate --batch-size 1000
 ### Generar estructura ScyllaDB y modelos C# (DDL)
 
 Lee la metadata SQL Server, crea las tablas configuradas en ScyllaDB y genera los modelos C# en
-`src/Executors/outputCsNet` y el mapping Kafka Connect/Zinc en `src/Executors/outputApacheZinc`:
+`src/Executors/outputCsNet`, el mapping Kafka Connect/Zinc y los archivos CQL en
+`src/Executors/outputApacheZinc`:
 
 ```bash
 uv run python -m src.Executors.SqlToScylladbDdlExecutor
@@ -208,6 +209,7 @@ Configura `SCYLLADB_CONTACT_POINTS` y `SCYLLADB_KEYSPACE` en `.env`. El keyspace
 esta fase no copia datos ni crea keyspaces.
 Los mappings Zinc se generan para todas las tablas procesadas usando topics Debezium
 `arify.<schema>.<tabla SQL Server>`.
+Tambien se genera `all_tables.cql` con el DDL consolidado de todas las tablas.
 Tambien se actualiza `src/Executors/outputDebezium/debezium-sqlserver.json`, solo en
 `table.include.list`, y se genera `src/Executors/outputDebezium/enable-cdc.sql`
 con el script CDC minimo para SQL Server, usando la misma lista de tablas.

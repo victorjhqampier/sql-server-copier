@@ -1,11 +1,13 @@
 from __future__ import annotations
 
 import re
+import unicodedata
 from pathlib import Path
 from typing import Any, Sequence
 
 from src.config.scylladb.tables_scylla import tables_scylladb
 from src.library.CreateCsFileHandler import CreateCsFileHandler
+from src.library.CreateCqlFileHandler import CreateCqlFileHandler
 from src.library.CreateDebeziumMapHandler import CreateDebeziumMapHandler
 from src.library.CreateZincMapHandler import CreateZincMapHandler
 from src.library.EnvironmentLibrary import EnvironmentLibrary, EnvironmentVariables
@@ -23,7 +25,8 @@ _TARGET_SQLSERVER_KEYS = (
 )
 _SCYLLADB_REQUIRED_KEYS = ("SCYLLADB_CONTACT_POINTS", "SCYLLADB_KEYSPACE")
 _SCYLLADB_OPTIONAL_KEYS = ("SCYLLADB_PORT", "SCYLLADB_USERNAME", "SCYLLADB_PASSWORD")
-_CDC_TOPIC_PREFIX = "arify"
+_KAFKA_TOPIC_PREFIX_KEY = "KAFKA_TOPIC_PREFIX"
+_CDC_TOPIC_PREFIX_DEFAULT = "arify"
 
 
 class SqlToScylladbDdlExecutor:
@@ -75,6 +78,7 @@ class SqlToScylladbDdlExecutor:
         / "debezium-sqlserver.json",
         cdc_sql_path: Path | str = Path(__file__).resolve().parent / "outputDebezium" / "enable-cdc.sql",
         namespace: str = "ScylladbInfrastructure.Collections.Tables",
+        topic_prefix: str = _CDC_TOPIC_PREFIX_DEFAULT,
     ) -> None:
         if not tables:
             raise ValueError("tables no puede ser una lista vacia")
@@ -101,11 +105,17 @@ class SqlToScylladbDdlExecutor:
         # -- Genera el modelo C# que representa cada tabla ScyllaDB.
         self._cs_files = CreateCsFileHandler(output_dir, namespace)
 
+        # -- Conserva el topic prefix para Debezium y Zinc.
+        self._topic_prefix = topic_prefix
+
         # -- Genera el archivo Kafka Connect/Zinc que mapea topics hacia ScyllaDB.
-        self._zinc_maps = CreateZincMapHandler(zinc_output_dir)
+        self._zinc_maps = CreateZincMapHandler(zinc_output_dir, topic_prefix=topic_prefix)
+
+        # -- Conserva el DDL CQL para aplicar o revisar el esquema fuera del executor.
+        self._cql_files = CreateCqlFileHandler(zinc_output_dir)
 
         # -- Sincroniza Debezium con la misma lista de tablas usadas por este flujo.
-        self._debezium_map = CreateDebeziumMapHandler(debezium_config_path, cdc_sql_path)
+        self._debezium_map = CreateDebeziumMapHandler(debezium_config_path, cdc_sql_path, topic_prefix=topic_prefix)
 
     def run(self) -> None:
         self._logger.info(f"Iniciando generacion ScyllaDB para {len(self._tables)} tabla(s)")
@@ -127,9 +137,18 @@ class SqlToScylladbDdlExecutor:
 
     @staticmethod
     def _snake_case(value: str) -> str:
+        value = SqlToScylladbDdlExecutor._normalize_identifier(value)
         words = re.sub(r"([a-z0-9])([A-Z])", r"\1_\2", value)
         words = re.sub(r"([A-Z]+)([A-Z][a-z])", r"\1_\2", words)
         return words.lower()
+
+    @staticmethod
+    def _normalize_identifier(value: str) -> str:
+        """Convierte caracteres acentuados a ASCII para los identificadores de salida."""
+        normalized = unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode("ascii")
+        if not normalized:
+            raise ValueError(f"Identificador sin caracteres ASCII utilizables: {value}")
+        return normalized
 
     @classmethod
     def _cql_type_for(cls, column: ColumnMetadata) -> str:
@@ -143,9 +162,10 @@ class SqlToScylladbDdlExecutor:
     def _translate_columns(cls, columns: Sequence[ColumnMetadata]) -> list[ScylladbColumnDefinition]:
         return [
             ScylladbColumnDefinition(
-                name=column.name,
+                name=cls._normalize_identifier(column.name),
                 cql_type=cls._cql_type_for(column),
                 nullable=column.nullable,
+                source_name=column.name,
             )
             for column in columns
         ]
@@ -191,6 +211,16 @@ class SqlToScylladbDdlExecutor:
         clustering_key = self._key_columns(table_cfg, "clustering_key")
         # -- Traduce tipos SQL Server a una definicion compartida por los tres destinos.
         definitions = self._translate_columns(columns)
+        source_to_target_column = {column.source_name: column.name for column in definitions}
+        if len(source_to_target_column) != len(definitions):
+            raise ValueError(f"{source_schema}.{source_table} contiene columnas repetidas")
+        if len(set(source_to_target_column.values())) != len(definitions):
+            raise ValueError(f"{source_schema}.{source_table} contiene columnas que coinciden al remover acentos")
+        try:
+            partition_key = tuple(source_to_target_column[column] for column in partition_key)
+            clustering_key = tuple(source_to_target_column[column] for column in clustering_key)
+        except KeyError as exc:
+            raise ValueError(f"La columna de llave {exc.args[0]} no existe en {source_schema}.{source_table}") from exc
 
         # -- Crea la tabla fisica en ScyllaDB.
         self._target.create_table(keyspace.strip(), target_table.strip(), definitions, partition_key, clustering_key)
@@ -201,8 +231,8 @@ class SqlToScylladbDdlExecutor:
         )
         self._logger.info(f"Modelo C# generado: {output_path}")
 
-        # -- Usa el mismo patron de topic que Debezium genera: arify.schema.TablaSQLServer.
-        cdc_topic = f"{_CDC_TOPIC_PREFIX}.{source_schema}.{source_table}"
+        # -- Usa el mismo patron de topic que Debezium genera: topic_prefix.schema.TablaSQLServer.
+        cdc_topic = f"{self._topic_prefix}.{source_schema}.{source_table}"
         zinc_output_path = self._zinc_maps.create_table(
             keyspace.strip(),
             target_table.strip(),
@@ -212,6 +242,11 @@ class SqlToScylladbDdlExecutor:
             topic=cdc_topic,
         )
         self._logger.info(f"Mapping Zinc generado: {zinc_output_path}")
+
+        cql_output_path = self._cql_files.create_table(
+            keyspace.strip(), target_table.strip(), definitions, partition_key, clustering_key
+        )
+        self._logger.info(f"CQL generado: {cql_output_path}")
 
 
 def _target_sqlserver_connection_string(env: EnvironmentVariables) -> ConnectionString:
@@ -252,7 +287,9 @@ def main() -> None:
         environment.get(*_SCYLLADB_REQUIRED_KEYS),
         environment.get(*_SCYLLADB_OPTIONAL_KEYS, required=False),
     )
-    SqlToScylladbDdlExecutor(sqlserver, scylladb, tables_scylladb).run()
+    topic_prefix_env = environment.get(_KAFKA_TOPIC_PREFIX_KEY, required=False)
+    topic_prefix = topic_prefix_env.extras.get(_KAFKA_TOPIC_PREFIX_KEY, _CDC_TOPIC_PREFIX_DEFAULT)
+    SqlToScylladbDdlExecutor(sqlserver, scylladb, tables_scylladb, topic_prefix=topic_prefix).run()
 
 
 if __name__ == "__main__":

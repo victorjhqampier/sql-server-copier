@@ -7,50 +7,50 @@ internal sealed class SiFinAgencia
 {
     [PartitionKey(0)]
 [Column("idAgencia")]
-public int IdAgencia { get; init; }
+public int idAgencia { get; init; }
 
     [Column("cNombreAge")]
-public string CNombreAge { get; init; }
+public string cNombreAge { get; init; }
 
     [Column("cNomCorto")]
-public string? CNomCorto { get; init; }
+public string? cNomCorto { get; init; }
 
     [Column("idUbigeo")]
-public int IdUbigeo { get; init; }
+public int idUbigeo { get; init; }
 
-    [Column("cDirección")]
-public string CDirecciN { get; init; }
+    [Column("cDireccion")]
+public string cDireccion { get; init; }
 
     [Column("cRefDirec")]
-public string? CRefDirec { get; init; }
+public string? cRefDirec { get; init; }
 
     [Column("cFono")]
-public string? CFono { get; init; }
+public string? cFono { get; init; }
 
     [Column("lEstado")]
-public bool? LEstado { get; init; }
+public bool? lEstado { get; init; }
 
     [Column("cCodSBS")]
-public string? CCodSbs { get; init; }
+public string? cCodSBS { get; init; }
 
     [Column("idTipoOficina")]
-public int IdTipoOficina { get; init; }
+public int idTipoOficina { get; init; }
 
     [Column("dfechaCreacion")]
-public System.DateTime? DfechaCreacion { get; init; }
+public System.DateTime? dfechaCreacion { get; init; }
 
     [Column("cNroResolucion")]
-public string? CNroResolucion { get; init; }
+public string? cNroResolucion { get; init; }
 
     [Column("idTipEsquemaCaja")]
-public int? IdTipEsquemaCaja { get; init; }
+public int? idTipEsquemaCaja { get; init; }
 
     [Column("nAnioResolucion")]
-public int? NAnioResolucion { get; init; }
+public int? nAnioResolucion { get; init; }
 
     [Column("lAplicaGiros")]
-public bool? LAplicaGiros { get; init; }
+public bool? lAplicaGiros { get; init; }
 
     [Column("idCategoria")]
-public int? IdCategoria { get; init; }
+public int? idCategoria { get; init; }
 }

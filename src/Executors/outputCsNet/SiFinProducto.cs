@@ -10,47 +10,47 @@ internal sealed class SiFinProducto
 public int IdProducto { get; init; }
 
     [Column("cCuentaContable")]
-public string? CCuentaContable { get; init; }
+public string? cCuentaContable { get; init; }
 
     [Column("cProducto")]
-public string? CProducto { get; init; }
+public string? cProducto { get; init; }
 
     [Column("IdProductoPadre")]
 public int? IdProductoPadre { get; init; }
 
     [Column("lVigente")]
-public bool? LVigente { get; init; }
+public bool? lVigente { get; init; }
 
     [Column("idModulo")]
-public int? IdModulo { get; init; }
+public int? idModulo { get; init; }
 
     [Column("cCodSBS")]
-public string? CCodSbs { get; init; }
+public string? cCodSBS { get; init; }
 
     [Column("dVigenciaInicio")]
-public Cassandra.LocalDate? DVigenciaInicio { get; init; }
+public Cassandra.LocalDate? dVigenciaInicio { get; init; }
 
     [Column("dVigenciaFin")]
-public Cassandra.LocalDate? DVigenciaFin { get; init; }
+public Cassandra.LocalDate? dVigenciaFin { get; init; }
 
     [Column("lConfigurable")]
-public bool? LConfigurable { get; init; }
+public bool? lConfigurable { get; init; }
 
     [Column("idFuenteCalcMora")]
-public int? IdFuenteCalcMora { get; init; }
+public int? idFuenteCalcMora { get; init; }
 
     [Column("cProductoCorto")]
-public string? CProductoCorto { get; init; }
+public string? cProductoCorto { get; init; }
 
     [Column("lAhorroWeb")]
-public bool? LAhorroWeb { get; init; }
+public bool? lAhorroWeb { get; init; }
 
     [Column("idGrupoCamp")]
-public int? IdGrupoCamp { get; init; }
+public int? idGrupoCamp { get; init; }
 
     [Column("lTasaClasifInterna")]
-public bool? LTasaClasifInterna { get; init; }
+public bool? lTasaClasifInterna { get; init; }
 
     [Column("cTipoOperacionCPE")]
-public string? CTipoOperacionCpe { get; init; }
+public string? cTipoOperacionCPE { get; init; }
 }
